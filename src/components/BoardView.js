@@ -11,16 +11,16 @@ class BoardView extends Component {
     }
 
     render() {
-        var intersections = [];
+        const intersections = [];
 
-        var style = {
-            width: this.props.board.size * GRID_SIZE,
-            height: this.props.board.size * GRID_SIZE
+        const style = {
+            width: this.props.game.board.size * GRID_SIZE,
+            height: this.props.game.board.size * GRID_SIZE
         };
         
-        for (let i = 0; i < this.props.board.size; i++) {
-            for (var j = 0; j < this.props.board.size; j++) {
-                intersections.push(<BoardIntersections board={this.props.board} row={i} col={j} handleSubmit={this.handleSubmit}/>);
+        for (let i = 0; i < this.props.game.board.size; i++) {
+            for (let j = 0; j < this.props.game.board.size; j++) {
+                intersections.push(<BoardIntersections board={this.props.game.board} row={i} col={j} handleSubmit={this.handleSubmit}/>);
             }
         }
         return <div style={style} id="board">{intersections}</div>
@@ -29,7 +29,7 @@ class BoardView extends Component {
 
 const mapStateToProps = state => {
     return {
-        board: state
+        game: state
     }
 }
 
