@@ -7,9 +7,9 @@ class BoardIntersections extends Component {
     render() {
         let classes = "intersection";
 
-        if (this.props.board.board[this.props.row][this.props.col] === 1) {
+        if (this.props.board.currentBoard[this.props.row][this.props.col] === 1) {
             classes += " black"
-        } else if (this.props.board.board[this.props.row][this.props.col] === 2) {
+        } else if (this.props.board.currentBoard[this.props.row][this.props.col] === 2) {
             classes += " white"
         }
 

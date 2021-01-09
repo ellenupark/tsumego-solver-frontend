@@ -1,24 +1,23 @@
 // import { createStore } from 'redux'
 // import Board from '../js/board'
 
-
-// const board = new Board(9);
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = [], action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
             const newState = {...state};
-            if (newState.board[action.payload.row][action.payload.col] !== 0) {
-                newState.board[action.payload.row][action.payload.col] = 0
-            } else {
-                newState.board[action.payload.row][action.payload.col] = newState.current_color;
+            if (newState.board[action.payload.row][action.payload.col] === 0) {
+                // newState.board[action.payload.row][action.payload.col] = 0
+            // } else {
+                if (newState.currentBoard[action.payload.row][action.payload.col] === 0) {
+                    newState.player === 'black' ? newState.currentBoard[action.payload.row][action.payload.col] = 1 : newState.currentBoard[action.payload.row][action.payload.col] = 2;
+                } else {
+                    newState.currentBoard[action.payload.row][action.payload.col] = 0; 
+                }
             }
-
-            newState.current_color === 1 ? newState.current_color = 2 : newState.current_color = 1
+            // newState.current_color === 1 ? newState.current_color = 2 : newState.current_color = 1
             return newState;
         case "SET_PROBLEM":
-            debugger
             return {...action.payload}
         default:
             return state

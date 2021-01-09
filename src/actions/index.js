@@ -3,7 +3,7 @@ export const fetchProblem = () => {
         return fetch('http://localhost:3000/problems')
         .then(resp => resp.json())
         .then(problem => {
-            const board = {...problem.data[0].attributes, board: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), answer: convertStringToBoard(problem.data[0].attributes.answer, problem.data[0].attributes.size)}
+            const board = {...problem.data[0].attributes, board: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), currentBoard: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), answer: convertStringToBoard(problem.data[0].attributes.answer, problem.data[0].attributes.size)}
             dispatch({ type: "SET_PROBLEM", payload: board })
         })
     }
