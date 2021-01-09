@@ -27,7 +27,6 @@ export default class Board {
         this.board[i][j] = this.current_color;
 
         this.current_color === 1 ? this.current_color = 2 : this.current_color = 1
-
         return true;
     };
     
