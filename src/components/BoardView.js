@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import BoardIntersections from './BoardIntersections'
+import { playMove } from '../actions/index'
 
 const GRID_SIZE = 40;
 
 class BoardView extends Component {
 
     handleSubmit = (row, col) => {
-        this.props.dispatch({type: "PLAY_STONE", payload: {row: row, col: col}})
+        this.props.playMove({row: row, col: col});
     }
 
     render() {
@@ -33,4 +34,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(BoardView);
+export default connect(mapStateToProps, { playMove })(BoardView);

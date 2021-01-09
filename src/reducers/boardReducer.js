@@ -7,7 +7,7 @@ const board = new Board(9);
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = board, action) => {
     switch (action.type) {
-        case 'PLAY_STONE':
+        case 'PLAY_MOVE':
             const newState = {...state};
             if (newState.board[action.payload.row][action.payload.col] !== 0) {
                 newState.board[action.payload.row][action.payload.col] = 0
