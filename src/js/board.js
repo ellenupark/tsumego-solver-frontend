@@ -29,6 +29,5 @@ export default class Board {
         this.current_color === 1 ? this.current_color = 2 : this.current_color = 1
         return true;
     };
-    
 }
 
