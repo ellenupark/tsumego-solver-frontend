@@ -1,12 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
-import BoardContainer from './containers/BoardContainer'
+import ProblemContainer from './containers/ProblemContainer'
+import Home from './components/Home'
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom';
 
 function App() {
   return (
-    <div className="App">
-      <BoardContainer />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/" component={Home} />
+        <Route exact path="/problems" component={ProblemContainer} />
+      </div>
+    </Router>
   );
 }
 
