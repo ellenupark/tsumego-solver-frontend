@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
+import AnswerContainer from './containers/AnswerContainer'
 
 class App extends Component {
 
@@ -22,12 +23,19 @@ class App extends Component {
     return (foundProblem ? <ProblemContainer problem={foundProblem} /> : <div/>)
   }
 
+  renderAnswer = (routerProps) => {
+    let problemId = parseInt(routerProps.match.params.id)
+    let foundProblem = this.props.problems.board.find(problem => problem.id === problemId)
+    return (foundProblem ? <AnswerContainer problem={foundProblem} /> : <div/>)
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <Route path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+          <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+          <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
         </div>
       </Router>
     );
