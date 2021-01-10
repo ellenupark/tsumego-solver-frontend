@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from '../actions/index'
-
+import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
     componentDidMount() {
@@ -11,10 +11,13 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                <h2>This is the home page</h2>
-                <Link to={`/problems/${this.props.id}`}><button>Practice</button></Link>
-                <button>Create</button>
+            <div className="home-page">
+                <div>
+                    <h2>Tsumego Solver</h2>
+                    <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
+                    <Button variant="success" size="lg">Create</Button>{' '}
+                    <Button variant="success" size="lg">Browse</Button>{' '}
+                </div>
             </div>
         );
     }
@@ -23,7 +26,7 @@ class Home extends Component {
 const mapStateToProps = state => {
     if (state.board[Math.floor(Math.random() * state.board.length)] === undefined) {
         return {
-            id: "2"
+            id: "1"
         }
     } 
     return {

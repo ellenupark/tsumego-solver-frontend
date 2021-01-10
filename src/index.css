@@ -55,3 +55,19 @@ body {
 .intersection.white {
   background-color: #eee;
 }
+
+/* Home Page */
+
+.home-page {
+  height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page div button {
+  display: block;
+  margin: 15% auto;
+}
