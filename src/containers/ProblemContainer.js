@@ -3,7 +3,6 @@ import BoardView from '../components/BoardView'
 import DetailsContainer from './DetailsContainer'
 import { connect } from 'react-redux'
 import { fetchProblems } from '../actions/index'
-import Spinner from 'react-bootstrap/Spinner'
 
 class ProblemContainer extends Component {
     componentDidMount() {

@@ -1,11 +1,19 @@
 import { React } from 'react';
+import { submitAnswer } from '../actions/index'
+import { connect } from 'react-redux'
 
-const DetailsButtons = () => {
+const DetailsButtons = (props) => {
     return (
         <div>
-            <button>Submit</button>
+            <button onClick={() => props.submitAnswer(props.problems.find(problem => problem.id === props.id))}>Submit</button>
         </div>
     );
 }
 
-export default DetailsButtons;
+const mapStateToProps = state => {
+    return {
+        problems: state.board
+    }
+}
+
+export default connect(mapStateToProps, { submitAnswer })(DetailsButtons);

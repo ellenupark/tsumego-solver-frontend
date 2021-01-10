@@ -15,12 +15,12 @@ class BoardView extends Component {
         const intersections = [];
 
         const style = {
-            width: this.props.game.size * GRID_SIZE + 4,
-            height: this.props.game.size * GRID_SIZE + 4
+            width: this.props.game.board_size * GRID_SIZE + 4,
+            height: this.props.game.board_size * GRID_SIZE + 4
         };
 
-        for (let i = 0; i < this.props.game.size; i++) {
-            for (let j = 0; j < this.props.game.size; j++) {
+        for (let i = 0; i < this.props.game.board_size; i++) {
+            for (let j = 0; j < this.props.game.board_size; j++) {
                 intersections.push(<BoardIntersections board={this.props.game} row={i} col={j} handleSubmit={this.handleSubmit}/>);
             }
         }

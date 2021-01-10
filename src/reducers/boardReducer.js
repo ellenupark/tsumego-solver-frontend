@@ -6,7 +6,7 @@ export default (state = [], action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
             let newState = state.map(problem => {return {...problem}})
-            
+
             const currentProblem = newState.find(problem => problem.id === action.payload.id);
             const currentProblemId = newState.findIndex(problem => problem === currentProblem);
 
@@ -23,6 +23,16 @@ export default (state = [], action) => {
             return newState;
         case "SET_PROBLEM":
             return [...action.payload]
+
+        case "SUBMIT_ANSWER":
+            let updatedState = state.map(problem => {return {...problem}})
+            const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
+            
+            updatedState[updatedProblemId].attempts = action.payload.attempts; 
+            updatedState[updatedProblemId].solved = action.payload.solved; 
+
+            console.log(updatedState)
+            return updatedState;
         default:
             return state
     }

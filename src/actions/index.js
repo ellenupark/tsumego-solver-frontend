@@ -4,11 +4,43 @@ export const fetchProblems = () => {
         .then(resp => resp.json())
         .then(problems => {
             const allProblems = problems.data.map((problem) => {
-                return {...problem.attributes, board: convertStringToBoard(problem.attributes.board, problem.attributes.size), currentBoard: convertStringToBoard(problem.attributes.board, problem.attributes.size), answer: convertStringToBoard(problem.attributes.answer, problem.attributes.size)}
+                return {...problem.attributes, board: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), currentBoard: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), answer: convertStringToBoard(problem.attributes.answer, problem.attributes.board_size)}
             })
-            // const board = {...problem.data[0].attributes, board: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), currentBoard: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), answer: convertStringToBoard(problem.data[0].attributes.answer, problem.data[0].attributes.size)}
             dispatch({ type: "SET_PROBLEM", payload: allProblems })
         })
+    }
+}
+
+export const submitAnswer = (problem) => {
+    const correct = checkForCorrectAnswer(problem)
+
+    let counter = 0;
+    if (correct === true) {
+        counter += 1;
+    }
+
+    let data = {
+        attempts: problem.attempts += 1,
+        solved: problem.solved += counter,
+    }
+
+    let options = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+    };
+
+    return(dispatch) => {
+        return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
+        .then(resp => resp.json())
+        .then(problem => {
+            let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            dispatch({ type: "SUBMIT_ANSWER", payload: updatedProblem })
+        })
+        
     }
 }
 
@@ -19,13 +51,13 @@ export const playMove = move => {
     }
 }
 
-function convertStringToBoard(string, size) {
+function convertStringToBoard(string, board_size) {
     let  result = [];
     let  count = 0;
-    for (let  i = 0; i < size; i++) {
+    for (let  i = 0; i < board_size; i++) {
         result.push([])
     }
-    for (let  i = 0; i < string.length; i++) {
+    for (let i = 0; i < string.length; i++) {
         if (string[i] !== '-') {
             result[count].push(parseInt(string[i]))
         } else {
@@ -35,11 +67,11 @@ function convertStringToBoard(string, size) {
     return  result;
 }
 
-function convertBoardToString(array, size) {
+function convertBoardToString(array, board_size) {
     let result = "";
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
-            if (j === size - 1 && i !== size - 1) {
+            if (j === board_size - 1 && i !== board_size - 1) {
                 result += (array[i][j].toString())
                 result += ('-')
             } else {
@@ -48,4 +80,15 @@ function convertBoardToString(array, size) {
         }
     }
     return result;
+}
+
+function checkForCorrectAnswer(problem) {
+    for (let i = 0; i < problem.answer.length; i++) {
+        for (let j = 0; j < problem.answer.length; j++) {
+            if (problem.answer[i][j] !== problem.currentBoard[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
