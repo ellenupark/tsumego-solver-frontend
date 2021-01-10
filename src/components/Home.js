@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import { fetchProblems } from '../actions/index'
+
 
 class Home extends Component {
+    componentDidMount() {
+        this.props.fetchProblems();
+    }
+
     render() {
         return (
             <div>
                 <h2>This is the home page</h2>
-                <a href='http://localhost:3001/problems'><button>Practice</button></a>
+                <Link to={`/problems/${this.props.id}`}><button>Practice</button></Link>
                 <button>Create</button>
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = state => {
+    if (state.board[Math.floor(Math.random() * state.board.length)] === undefined) {
+        return {
+            id: "2"
+        }
+    } 
+    return {
+        id: state.board[Math.floor(Math.random() * state.board.length)].id
+    }
+}
+
+export default connect(mapStateToProps, { fetchProblems })(Home);

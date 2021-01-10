@@ -11,18 +11,17 @@ class ProblemContainer extends Component {
     }
 
     render() {
-        if (this.props.game.board.size === undefined) {
-            return (
-                <Spinner animation="border" role="status">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
-            )
-        }
-
+        // if (this.props.game.board.size === undefined) {
+        //     return (
+        //         <Spinner animation="border" role="status">
+        //             <span className="sr-only">Loading...</span>
+        //         </Spinner>
+        //     )
+        // }
         return (
             <div className="board-container">
-                <BoardView />
-                <DetailsContainer />
+                <BoardView game={this.props.problem}/>
+                <DetailsContainer game={this.props.problem}/>
             </div>
         );
     }

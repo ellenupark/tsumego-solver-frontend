@@ -5,14 +5,18 @@
 export default (state = [], action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
-            const newState = {...state};
-            if (newState.board[action.payload.row][action.payload.col] === 0) {
+            let newState = state.map(problem => {return {...problem}})
+            
+            const currentProblem = newState.find(problem => problem.id === action.payload.id);
+            const currentProblemId = newState.findIndex(problem => problem === currentProblem);
+
+            if (currentProblem.board[action.payload.row][action.payload.col] === 0) {
                 // newState.board[action.payload.row][action.payload.col] = 0
             // } else {
-                if (newState.currentBoard[action.payload.row][action.payload.col] === 0) {
-                    newState.player === 'Black' ? newState.currentBoard[action.payload.row][action.payload.col] = 1 : newState.currentBoard[action.payload.row][action.payload.col] = 2;
+                if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
+                    newState[currentProblemId].player === 'Black' ? newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 1 : newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 2;
                 } else {
-                    newState.currentBoard[action.payload.row][action.payload.col] = 0; 
+                    newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 0; 
                 }
             }
             // newState.current_color === 1 ? newState.current_color = 2 : newState.current_color = 1

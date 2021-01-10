@@ -8,20 +8,20 @@ const GRID_SIZE = 40;
 class BoardView extends Component {
 
     handleSubmit = (row, col) => {
-        this.props.playMove({row: row, col: col});
+        this.props.playMove({row: row, col: col, id: this.props.game.id});
     }
 
     render() {
         const intersections = [];
 
         const style = {
-            width: this.props.game.board.size * GRID_SIZE + 4,
-            height: this.props.game.board.size * GRID_SIZE + 4
+            width: this.props.game.size * GRID_SIZE + 4,
+            height: this.props.game.size * GRID_SIZE + 4
         };
 
-        for (let i = 0; i < this.props.game.board.size; i++) {
-            for (let j = 0; j < this.props.game.board.size; j++) {
-                intersections.push(<BoardIntersections board={this.props.game.board} row={i} col={j} handleSubmit={this.handleSubmit}/>);
+        for (let i = 0; i < this.props.game.size; i++) {
+            for (let j = 0; j < this.props.game.size; j++) {
+                intersections.push(<BoardIntersections board={this.props.game} row={i} col={j} handleSubmit={this.handleSubmit}/>);
             }
         }
         return <div style={style} id="board">{intersections}</div>
@@ -29,10 +29,10 @@ class BoardView extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        game: state
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         game: state
+//     }
+// }
 
-export default connect(mapStateToProps, { playMove })(BoardView);
+export default connect(null, { playMove })(BoardView);
