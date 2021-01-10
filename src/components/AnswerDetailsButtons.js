@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
 
 class AnswerDetailsButtons extends Component {
+    selectNextProblem = (state) => {
+        const currentProblemId = this.props.id;
+        let nextProblemId = currentProblemId;
+    
+        while (nextProblemId === currentProblemId) {
+            nextProblemId = state.board[Math.floor(Math.random() * state.board.length)].id
+        }
+    
+        return nextProblemId;
+    }
+
     render() {
         return (
             <div>
-                
+                <Link to={`/problems/${this.selectNextProblem(this.props.problems)}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Next Problem</Button>{' '}</Link>
+                <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="secondary" size="lg">Try Again?</Button>{' '}</Link>
             </div>
         );
     }
@@ -13,7 +27,7 @@ class AnswerDetailsButtons extends Component {
 
 const mapStateToProps = state => {
     return {
-        id: state.board[Math.floor(Math.random() * state.board.length)].id
+        problems: state
     }
 }
 
