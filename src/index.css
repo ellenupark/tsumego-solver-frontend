@@ -48,6 +48,10 @@ body {
   border: 1px solid #000;
 }
 
+.intersection:hover {
+  background-color: rgba(126, 126, 126, 0.4);
+}
+
 .intersection.black {
   background-color: #333333;
 }
