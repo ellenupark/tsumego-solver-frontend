@@ -48,7 +48,7 @@ body {
   border: 1px solid #000;
 }
 
-.intersection:hover {
+.active-board:hover {
   background-color: rgba(126, 126, 126, 0.4);
 }
 

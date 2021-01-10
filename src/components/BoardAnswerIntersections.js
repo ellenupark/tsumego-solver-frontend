@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 const GRID_SIZE = 40;
 
-class BoardIntersections extends Component {
+class BoardAnswerIntersections extends Component {
 
     render() {
-        let classes = "intersection active-board";
+        let classes = "intersection";
 
         if (this.props.board.currentBoard[this.props.row][this.props.col] === 1) {
             classes += " black"
@@ -19,9 +19,9 @@ class BoardIntersections extends Component {
         };
 
         return (
-            <div onClick={() => this.props.handleSubmit(this.props.row, this.props.col)} className={classes} style={style}></div>
+            <div className={classes} style={style}></div>
         )
     }
 }
 
-export default BoardIntersections;
+export default BoardAnswerIntersections;
