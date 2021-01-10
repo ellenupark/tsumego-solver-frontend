@@ -62,6 +62,7 @@ body {
 
 .intersection.red {
   border: 1px solid #b90000;
+  opacity: 30%;
 }
 
 .intersection.green {
