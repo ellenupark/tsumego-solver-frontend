@@ -18,7 +18,7 @@ export default (state = [], action) => {
             // newState.current_color === 1 ? newState.current_color = 2 : newState.current_color = 1
             return newState;
         case "SET_PROBLEM":
-            return {...action.payload}
+            return [...action.payload]
         default:
             return state
     }

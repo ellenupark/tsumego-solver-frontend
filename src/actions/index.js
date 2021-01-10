@@ -1,10 +1,13 @@
-export const fetchProblem = () => {
+export const fetchProblems = () => {
     return(dispatch) => {
         return fetch('http://localhost:3000/problems')
         .then(resp => resp.json())
-        .then(problem => {
-            const board = {...problem.data[0].attributes, board: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), currentBoard: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), answer: convertStringToBoard(problem.data[0].attributes.answer, problem.data[0].attributes.size)}
-            dispatch({ type: "SET_PROBLEM", payload: board })
+        .then(problems => {
+            const allProblems = problems.data.map((problem) => {
+                return {...problem.attributes, board: convertStringToBoard(problem.attributes.board, problem.attributes.size), currentBoard: convertStringToBoard(problem.attributes.board, problem.attributes.size), answer: convertStringToBoard(problem.attributes.answer, problem.attributes.size)}
+            })
+            // const board = {...problem.data[0].attributes, board: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), currentBoard: convertStringToBoard(problem.data[0].attributes.board, problem.data[0].attributes.size), answer: convertStringToBoard(problem.data[0].attributes.answer, problem.data[0].attributes.size)}
+            dispatch({ type: "SET_PROBLEM", payload: allProblems })
         })
     }
 }

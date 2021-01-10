@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import BoardView from '../components/BoardView'
 import DetailsContainer from './DetailsContainer'
 import { connect } from 'react-redux'
-import { fetchProblem } from '../actions/index'
+import { fetchProblems } from '../actions/index'
 import Spinner from 'react-bootstrap/Spinner'
 
 class ProblemContainer extends Component {
     componentDidMount() {
-        this.props.fetchProblem();
+        this.props.fetchProblems();
     }
 
     render() {
@@ -34,4 +34,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchProblem })(ProblemContainer);
+export default connect(mapStateToProps, { fetchProblems })(ProblemContainer);
