@@ -10,7 +10,7 @@ export default (state = [], action) => {
                 // newState.board[action.payload.row][action.payload.col] = 0
             // } else {
                 if (newState.currentBoard[action.payload.row][action.payload.col] === 0) {
-                    newState.player === 'black' ? newState.currentBoard[action.payload.row][action.payload.col] = 1 : newState.currentBoard[action.payload.row][action.payload.col] = 2;
+                    newState.player === 'Black' ? newState.currentBoard[action.payload.row][action.payload.col] = 1 : newState.currentBoard[action.payload.row][action.payload.col] = 2;
                 } else {
                     newState.currentBoard[action.payload.row][action.payload.col] = 0; 
                 }

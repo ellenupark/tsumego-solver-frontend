@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import BoardIntersections from './BoardIntersections'
 import { playMove } from '../actions/index'
-import { fetchProblem } from '../actions/index'
 
 const GRID_SIZE = 40;
 
 class BoardView extends Component {
-
-    componentDidMount() {
-        this.props.fetchProblem();
-    }
 
     handleSubmit = (row, col) => {
         this.props.playMove({row: row, col: col});
@@ -18,17 +13,19 @@ class BoardView extends Component {
 
     render() {
         const intersections = [];
+
         const style = {
-            width: this.props.game.board.size * GRID_SIZE,
-            height: this.props.game.board.size * GRID_SIZE
+            width: this.props.game.board.size * GRID_SIZE + 4,
+            height: this.props.game.board.size * GRID_SIZE + 4
         };
-        
+
         for (let i = 0; i < this.props.game.board.size; i++) {
             for (let j = 0; j < this.props.game.board.size; j++) {
                 intersections.push(<BoardIntersections board={this.props.game.board} row={i} col={j} handleSubmit={this.handleSubmit}/>);
             }
         }
         return <div style={style} id="board">{intersections}</div>
+        
     }
 }
 
@@ -38,4 +35,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { playMove, fetchProblem })(BoardView);
+export default connect(mapStateToProps, { playMove })(BoardView);

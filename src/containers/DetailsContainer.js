@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import DetailsSummary from '../components/DetailsSummary'
+import DetailsButtons from '../components/DetailsButtons'
+import { connect } from 'react-redux'
 
 class DetailsContainer extends Component {
     render() {
         return (
             <div>
-                <h2>Here are the details</h2>
+                <DetailsSummary player={this.props.game.board.player}/>
+                <DetailsButtons id={this.props.game.board.id} />
             </div>
         );
     }
 }
 
-export default DetailsContainer;
+const mapStateToProps = state => {
+    return {
+        game: state
+    }
+}
+
+export default connect(mapStateToProps)(DetailsContainer);
