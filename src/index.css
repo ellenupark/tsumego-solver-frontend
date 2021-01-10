@@ -60,6 +60,14 @@ body {
   background-color: #eee;
 }
 
+.intersection.red {
+  border: 1px solid #b90000;
+}
+
+.intersection.green {
+  border: 1px solid #0b8300;
+}
+
 /* Home Page */
 
 .home-page {
