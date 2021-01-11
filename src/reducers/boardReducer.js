@@ -14,6 +14,13 @@ export default (state = [], action) => {
                 // newState.board[action.payload.row][action.payload.col] = 0
             // } else {
                 if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
+                    for (let i = 0; i < currentProblem.board_size; i++) {
+                        for (let j = 0; j < currentProblem.board_size; j++) {
+                            if (currentProblem.currentBoard[i][j] !== currentProblem.board[i][j]) {
+                                newState[currentProblemId].currentBoard[i][j] = 0;
+                            }
+                        }
+                    }
                     newState[currentProblemId].player === 'Black' ? newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 1 : newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 2;
                 } else {
                     newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 0; 
