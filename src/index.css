@@ -88,6 +88,12 @@ body {
   margin: 10px;
 }
 
+/* Answer Page */
+
+.answer-details button {
+  margin: 10px;
+}
+
 /* Home Page */
 
 .home-page {

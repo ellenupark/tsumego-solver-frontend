@@ -20,7 +20,7 @@ class AnswerDetailsButtons extends Component {
 
     render() {
         return (
-            <div>
+            <div className="answer-details">
                 <Link to={`/problems/${this.selectNextProblem(this.props.problems)}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Next Problem</Button>{' '}</Link>
                 <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="secondary" size="lg">Try Again?</Button>{' '}</Link>
             </div>

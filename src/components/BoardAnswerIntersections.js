@@ -29,8 +29,8 @@ class BoardAnswerIntersections extends Component {
         let classes = "intersection";
         if (this.props.row === move.row && this.props.col === move.col && correct) {
             classes += `${stoneColor} green`
-        } else if (this.props.row === move.row && this.props.col === move.col && !correct) {
-            classes += `${stoneColor} green`
+        // } else if (this.props.row === move.row && this.props.col === move.col && !correct) {
+        //     classes += `${stoneColor} green`
         } else if (this.props.board.currentBoard[this.props.row][this.props.col] !== this.props.board.board[this.props.row][this.props.col] && !correct) {
             classes += `${stoneColor} red`
         } else if (this.props.board.currentBoard[this.props.row][this.props.col] === 1) {
