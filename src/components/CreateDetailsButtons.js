@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button'
+import { submitProblem } from '../actions/index'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
+
 
 class CreateDetailsButtons extends Component {
     render() {
@@ -7,7 +11,7 @@ class CreateDetailsButtons extends Component {
             return (
                 <div>
                     <Button onClick={this.props.toggleActive} variant="success" size="lg">Add Solution</Button>{' '}
-                    <Button variant="success" size="lg" disabled>Submit Problem</Button>{' '}
+                    <Link to={'/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg" disabled>Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
             );
@@ -15,7 +19,7 @@ class CreateDetailsButtons extends Component {
             return (
                 <div>
                     <Button variant="success" size="lg" disabled>Add Solution</Button>{' '}
-                    <Button variant="success" size="lg">Submit Problem</Button>{' '}
+                    <Link to={'/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg">Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
             );
@@ -23,4 +27,4 @@ class CreateDetailsButtons extends Component {
     }
 }
 
-export default CreateDetailsButtons;
+export default connect(null, { submitProblem })(CreateDetailsButtons);

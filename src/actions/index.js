@@ -51,6 +51,52 @@ export const playMove = move => {
     }
 }
 
+export const submitProblem = problem => {
+    let submit = problem;
+
+    let answerArray = [[], [], [], [], [], [], [], [], []];
+
+    for (let i = 0; i < problem.board_size; i++) {
+        for (let j = 0; j < problem.board_size; j++) {
+            answerArray[i].push(problem.board[i][j])
+        }
+    }
+
+    let problemBoard = [...problem.board]
+
+    const row = parseInt(problem.move.split('')[0]);
+    const col = parseInt(problem.move.split('')[1]);
+
+    problemBoard[row][col] = 0;
+
+    submit.answer = [...answerArray]
+    submit.board = [...problemBoard] 
+
+    submit.board = convertBoardToString(submit.board, 9);
+    submit.answer = convertBoardToString(submit.answer, 9);
+
+    delete submit.active;
+
+    let options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(submit)
+    };
+
+    return(dispatch) => {
+        return fetch(`http://localhost:3000/problems`, options)
+        .then(resp => resp.json())
+        .then(problem => {
+            let newProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            dispatch({ type: "SUBMIT_PROBLEM", payload: newProblem })
+        })
+        
+    }
+}
+
 function convertStringToBoard(string, board_size) {
     let  result = [];
     let  count = 0;

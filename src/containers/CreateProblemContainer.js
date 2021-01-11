@@ -7,7 +7,7 @@ class CreateProblemContainer extends Component {
     constructor() {
         super()
         this.state = {
-            boardSize: 9,
+            board_size: 9,
             board: this.convertStringToBoard("000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000", 9),
             answer: this.convertStringToBoard("000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000", 9),
             move: "",

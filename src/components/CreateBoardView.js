@@ -12,12 +12,12 @@ class CreateBoardView extends Component {
         const intersections = [];
 
         const style = {
-            width: this.props.board.boardSize * GRID_SIZE + 4,
-            height: this.props.board.boardSize * GRID_SIZE + 4
+            width: this.props.board.board_size * GRID_SIZE + 4,
+            height: this.props.board.board_size * GRID_SIZE + 4
         };
 
-        for (let i = 0; i < this.props.board.boardSize; i++) {
-            for (let j = 0; j < this.props.board.boardSize; j++) {
+        for (let i = 0; i < this.props.board.board_size; i++) {
+            for (let j = 0; j < this.props.board.board_size; j++) {
                 intersections.push(<CreateIntersections problem={this.props.board} row={i} col={j} setStone={(i, j) => this.props.setStone(i, j)} />);
             }
         }

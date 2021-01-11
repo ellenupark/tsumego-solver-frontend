@@ -23,7 +23,8 @@ export default (state = [], action) => {
             return newState;
         case "SET_PROBLEM":
             return [...action.payload]
-
+        case "SUBMIT_PROBLEM":
+            return [...state, action.payload]
         case "SUBMIT_ANSWER":
             let updatedState = state.map(problem => {return {...problem}})
             const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
