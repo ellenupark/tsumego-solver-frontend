@@ -50,7 +50,16 @@ class CreateProblemContainer extends Component {
 
     toggleActive = () => {
         this.setState({
-            active: !this.state.active
+            active: !this.state.active,
+            current_color: this.state.active ? this.state.current_color : 1
+        })
+    }
+
+    resetBoard = () => {
+        this.setState({
+            board: this.convertStringToBoard("000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000", 9),
+            move: "",
+            current_color: 1
         })
     }
 
@@ -74,7 +83,7 @@ class CreateProblemContainer extends Component {
         return (
             <div className="board-container">
                 <CreateBoardView board={this.state} setStone={(i, j) => this.setStone(i, j)} />
-                <CreateDetailsContainer board={this.state} toggleActive={() => this.toggleActive()} />
+                <CreateDetailsContainer board={this.state} toggleActive={() => this.toggleActive()} resetBoard={() => this.resetBoard()}/>
             </div>
         );
     }

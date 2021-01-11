@@ -7,7 +7,7 @@ class CreateDetailsContainer extends Component {
         return (
             <div>
                 <CreateDetailsSummary problem={this.props.board} />
-                <CreateDetailsButtons problem={this.props.board} toggleActive={this.props.toggleActive} />
+                <CreateDetailsButtons problem={this.props.board} toggleActive={this.props.toggleActive} resetBoard={this.props.resetBoard} />
             </div>
         );
     }
