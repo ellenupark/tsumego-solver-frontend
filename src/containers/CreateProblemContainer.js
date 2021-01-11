@@ -16,7 +16,8 @@ class CreateProblemContainer extends Component {
             solved: 0,
             current_color: 1,
             user_made: true,
-            active: false
+            active: false,
+            prompt: "Black to Capture"
         }
     }
 

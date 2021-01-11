@@ -7,7 +7,7 @@ class DetailsContainer extends Component {
     render() {
         return (
             <div>
-                <DetailsSummary player={this.props.game.player}/>
+                <DetailsSummary prompt={this.props.game.prompt}/>
                 <DetailsButtons id={this.props.game.id} />
             </div>
         );

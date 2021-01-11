@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { fetchProblems } from '../actions/index'
+// import { fetchProblems } from '../actions/index'
 import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
-    componentDidMount() {
-        this.props.fetchProblems();
-    }
+    // componentDidMount() {
+    //     this.props.fetchProblems();
+    // }
 
     filterUserCreated = () => {
-        if (this.props.problems.length < 1) {
-            return 1;
-        }
         const problems = this.props.problems.filter(problem => problem.user_made === true);
-        return problems[Math.floor(Math.random() * problems.length)].id;
+        if (problems.length < 1) {
+            return 1;
+        } else {
+            return problems[Math.floor(Math.random() * problems.length)].id;
+        }
     }
 
     filterOfficial = () => {
-        if (this.props.problems.length < 1) {
+        const problems = this.props.problems.filter(problem => problem.user_made === false);
+        if (problems.length < 1) {
             return 1;
         }
-        const problems = this.props.problems.filter(problem => problem.user_made === false);
         return problems[Math.floor(Math.random() * problems.length)].id;
     }
 
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { fetchProblems })(Home);
+export default connect(mapStateToProps)(Home);
