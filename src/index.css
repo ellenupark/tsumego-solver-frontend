@@ -99,6 +99,15 @@ body {
   align-items: center;
 }
 
+.align-center {
+  height: 80vh;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .home-page div button {
   display: block;
   margin: 15% auto;
