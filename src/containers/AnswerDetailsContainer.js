@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AnswerDetailsSummary from '../components/AnswerDetailsSummary'
 import AnswerDetailsButtons from '../components/AnswerDetailsButtons'
+import Percentage from '../components/Percentage'
+
 
 
 class AnswerDetailsContainer extends Component {
@@ -9,6 +11,7 @@ class AnswerDetailsContainer extends Component {
             <div>
                 <AnswerDetailsSummary problem={this.props.game}/>
                 <AnswerDetailsButtons id={this.props.game.id} />
+                <Percentage attempts={this.props.game.attempts} solved={this.props.game.solved} />
             </div>
         );
     }
