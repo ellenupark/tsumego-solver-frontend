@@ -15,8 +15,8 @@ class BoardAnswerIntersections extends Component {
     }
 
     retrieveCorrectMove = (board) => {
-        let row = parseInt(board.move.split('')[0]);
-        let col = parseInt(board.move.split('')[1]);
+        let row = parseInt(board.move.split('-')[0]);
+        let col = parseInt(board.move.split('-')[1]);
 
         return {row: row, col: col};
     }

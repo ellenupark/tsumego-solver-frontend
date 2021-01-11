@@ -24,7 +24,7 @@ class CreateProblemContainer extends Component {
     setStone(i, j) {
         if (this.state.active && this.state.board[i][j] === 0) {
             this.setState({
-                move: `${i.toString()}${j.toString()}`
+                move: `${i.toString()}-${j.toString()}`
             })
             this.toggleActive();
         }
