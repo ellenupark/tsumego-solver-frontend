@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from '../actions/index'
+
 import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
@@ -15,7 +16,7 @@ class Home extends Component {
                 <div>
                     <h2>Tsumego Solver</h2>
                     <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
-                    <Button variant="success" size="lg">Create</Button>{' '}
+                    <Link to={`/problems/create`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Create</Button>{' '}</Link>
                     <Button variant="success" size="lg">Browse</Button>{' '}
                 </div>
             </div>

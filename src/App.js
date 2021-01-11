@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
 import AnswerContainer from './containers/AnswerContainer'
+import CreateProblemContainer from './containers/CreateProblemContainer'
 
 class App extends Component {
 
@@ -36,6 +37,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
           <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
+          <Route exact path = '/problems/create' component={CreateProblemContainer} />
         </div>
       </Router>
     );
