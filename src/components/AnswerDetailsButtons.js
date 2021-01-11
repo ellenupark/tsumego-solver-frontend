@@ -10,9 +10,9 @@ class AnswerDetailsButtons extends Component {
     
         while (nextProblemId === currentProblemId) {
             if (state.board.find(problem => problem.id === this.props.id).user_made === false) {
-                nextProblemId = state.board.filter(board => board.user_made === false)[Math.floor(Math.random() * state.board.length)].id
+                nextProblemId = state.board.filter(board => board.user_made === false)[Math.floor(Math.random() * state.board.filter(board => board.user_made === false).length)].id
             } else {
-                nextProblemId = state.board.filter(board => board.user_made === true)[Math.floor(Math.random() * state.board.length)].id
+                nextProblemId = state.board.filter(board => board.user_made === true)[Math.floor(Math.random() * state.board.filter(board => board.user_made === true).length)].id
             }
         }
         return nextProblemId;

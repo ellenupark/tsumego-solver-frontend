@@ -12,6 +12,7 @@ import { fetchProblems } from './actions/index'
 import AnswerContainer from './containers/AnswerContainer'
 import CreateProblemContainer from './containers/CreateProblemContainer'
 import Submitted from './components/Submitted'
+import NavBar from './components/NavBar'
 
 class App extends Component {
 
@@ -36,10 +37,11 @@ class App extends Component {
       <Router>
         <div className="App">
           <Route exact path="/" component={Home} />
-          <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+          <Route path="/problems" component={NavBar} />
           <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
           <Route exact path = '/problems/create' component={CreateProblemContainer} />
-          <Route exact path = '/submitted' component={Submitted} />
+          <Route exact path = '/problems/submitted' component={Submitted} />
+          <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
         </div>
       </Router>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BoardAnswerIntersections from './BoardAnswerIntersections'
+import { v4 as uuidv4 } from 'uuid';
 
 const GRID_SIZE = 40;
 
@@ -15,7 +16,7 @@ class BoardAnswerView extends Component {
 
         for (let i = 0; i < this.props.game.board_size; i++) {
             for (let j = 0; j < this.props.game.board_size; j++) {
-                intersections.push(<BoardAnswerIntersections board={this.props.game}  row={i} col={j} />);
+                intersections.push(<BoardAnswerIntersections key={uuidv4()} board={this.props.game}  row={i} col={j} />);
             }
         }
         return <div style={style} id="board">{intersections}</div>

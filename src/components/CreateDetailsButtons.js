@@ -11,7 +11,7 @@ class CreateDetailsButtons extends Component {
             return (
                 <div>
                     <Button onClick={this.props.toggleActive} variant="success" size="lg">Add Solution</Button>{' '}
-                    <Link to={'/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg" disabled>Submit Problem</Button>{' '}</Link>
+                    <Link to={'/problems/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg" disabled>Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
             );
@@ -19,7 +19,7 @@ class CreateDetailsButtons extends Component {
             return (
                 <div>
                     <Button variant="success" size="lg" disabled>Add Solution</Button>{' '}
-                    <Link to={'/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg">Submit Problem</Button>{' '}</Link>
+                    <Link to={'/problems/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg">Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
             );
