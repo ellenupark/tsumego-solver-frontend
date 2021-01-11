@@ -32,7 +32,7 @@ export const submitAnswer = (problem) => {
         },
         body: JSON.stringify(data)
     };
-
+    
     return(dispatch) => {
         return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
         .then(resp => resp.json())
@@ -64,8 +64,8 @@ export const submitProblem = problem => {
 
     let problemBoard = [...problem.board]
 
-    const row = parseInt(problem.move.split('')[0]);
-    const col = parseInt(problem.move.split('')[1]);
+    const row = parseInt(problem.move.split('-')[0]);
+    const col = parseInt(problem.move.split('-')[1]);
 
     problemBoard[row][col] = 0;
 

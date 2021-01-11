@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 
 const DetailsButtons = (props) => {
     return (
-        <div>
+        <div className="submit-button" >
             <Link to={`/problems/${props.id}/answer`} style={{textDecoration: 'none'}}><Button  onClick={() => props.submitAnswer(props.problems.find(problem => problem.id === props.id))} variant="success" size="lg">Submit</Button>{' '}</Link>
         </div>
     );
