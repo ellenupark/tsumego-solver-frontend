@@ -17,7 +17,7 @@ class Home extends Component {
                     <h2>Tsumego Solver</h2>
                     <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
                     <Link to={`/problems/create`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Create</Button>{' '}</Link>
-                    <Button variant="success" size="lg">Browse</Button>{' '}
+                    <Link to={`/problems/${this.props.id}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Browse</Button>{' '}</Link>
                 </div>
             </div>
         );
@@ -25,13 +25,16 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-    if (state.board[Math.floor(Math.random() * state.board.length)] === undefined) {
+    if (state.board.length < 1) {
         return {
             id: "1"
         }
     } 
+    
+    
+    const officialProblems = state.board.filter(board => board.user_made === false );
     return {
-        id: state.board[Math.floor(Math.random() * state.board.length)].id
+        id: officialProblems[Math.floor(Math.random() * officialProblems.length)].id
     }
 }
 
