@@ -4,7 +4,8 @@ class CreateDetailsSummary extends Component {
     render() {
         return (
             <div>
-                <h2>Summary</h2>
+                <h2>Black to Capture</h2>
+                <p>Solve in 1 Turn</p>
             </div>
         );
     }

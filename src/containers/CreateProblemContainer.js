@@ -15,6 +15,7 @@ class CreateProblemContainer extends Component {
             attempts: 0,
             solved: 0,
             current_color: 1,
+            user_made: true,
             active: false
         }
     }
