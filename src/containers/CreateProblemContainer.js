@@ -4,6 +4,7 @@ import CreateDetailsContainer from './CreateDetailsContainer'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
+import Switch from "react-switch";
 
 
 class CreateProblemContainer extends Component {
@@ -20,7 +21,8 @@ class CreateProblemContainer extends Component {
             current_color: 1,
             user_made: true,
             active: false,
-            prompt: "Black to Capture"
+            prompt: "Black to Capture",
+            checked: false
         }
     }
 
@@ -41,7 +43,7 @@ class CreateProblemContainer extends Component {
 
         this.setState({
             board: this.updateBoard(i, j, this.state.current_color),
-            current_color: this.state.current_color === 1 ? 2 : 1,
+            // current_color: this.state.current_color === 1 ? 2 : 1,
         })
         return true;
     };
@@ -56,7 +58,8 @@ class CreateProblemContainer extends Component {
     toggleActive = () => {
         this.setState({
             active: !this.state.active,
-            current_color: this.state.active ? this.state.current_color : 1
+            current_color: this.state.active ? this.state.current_color : 1,
+            checked: false
         })
     }
 
@@ -64,8 +67,14 @@ class CreateProblemContainer extends Component {
         this.setState({
             board: this.convertStringToBoard("000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000-000000000", 9),
             move: "",
-            current_color: 1
+            current_color: 1,
+            checked: false
         })
+    }
+
+    handleChange = (checked) => {
+        const color = this.state.checked === false ? 2 : 1;
+        this.setState({checked: !this.state.checked, current_color: color });
     }
 
     convertStringToBoard = (string, board_size) => {
@@ -89,8 +98,13 @@ class CreateProblemContainer extends Component {
         return (
             <Container fluid>
                 <Row>
+                    <Col md="auto">
+                        <label>
+                            <Switch offHandleColor="#000" onHandleColor="#FFF" checkedIcon={false} uncheckedIcon={false} onColor="#D3D3D3" offColor="#D3D3D3" onChange={this.handleChange} checked={this.state.checked} />
+                        </label>
+                    </Col>
                     <Col md="auto"><CreateBoardView board={this.state} setStone={(i, j) => this.setStone(i, j)} /></Col>
-                    <Col md="auto"><CreateDetailsContainer board={this.state} toggleActive={() => this.toggleActive()} resetBoard={() => this.resetBoard()}/></Col>
+                    <Col md="auto"><CreateDetailsContainer onChange={this.handleChange} checked={this.state.checked} board={this.state} toggleActive={() => this.toggleActive()} resetBoard={() => this.resetBoard()}/></Col>
                 </Row>
             </Container>
         );
