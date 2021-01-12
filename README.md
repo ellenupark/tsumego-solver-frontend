@@ -46,7 +46,8 @@ rails s
 ### Open Application
 Navigate to the Frontend root directory.
 
-```yarn start
+```
+yarn start
 ```
 
 ## Contributing
