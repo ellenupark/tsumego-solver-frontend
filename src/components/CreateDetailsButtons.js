@@ -10,7 +10,7 @@ class CreateDetailsButtons extends Component {
         if (this.props.problem.move === "") {
             return (
                 <div className="create-buttons">
-                    <Button onClick={this.props.toggleActive} variant="success" size="lg">Add Solution</Button>{' '}
+                    <Button onClick={this.props.toggleActive} variant="primary" size="lg">Add Solution</Button>{' '}
                     <Link to={'/problems/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg" disabled>Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
@@ -18,7 +18,7 @@ class CreateDetailsButtons extends Component {
         } else {
             return (
                 <div className="create-buttons">
-                    <Button variant="success" size="lg" disabled>Add Solution</Button>{' '}
+                    <Button variant="primary" size="lg" disabled>Add Solution</Button>{' '}
                     <Link to={'/problems/submitted'} style={{textDecoration: 'none'}}><Button onClick={() => this.props.submitProblem(this.props.problem)} variant="success" size="lg">Submit Problem</Button>{' '}</Link>
                     <Button onClick={this.props.resetBoard} variant="secondary" size="lg">Reset</Button>{' '}
                 </div>
