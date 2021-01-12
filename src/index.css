@@ -149,13 +149,14 @@ button {
 /* Percentage Chart */
 
 .flex-wrapper {
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .single-chart {
-  width: 65px;
+  width: 25%;
 }
 
 .chart-description p {
