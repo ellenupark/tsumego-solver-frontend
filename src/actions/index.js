@@ -1,6 +1,7 @@
 export const fetchProblems = () => {
     return(dispatch) => {
-        return fetch('http://localhost:3000/problems')
+        // return fetch('http://localhost:3000/problems')
+        return fetch('http://tsumego-solver.herokuapp.com/problems')
         .then(resp => resp.json())
         .then(problems => {
             const allProblems = problems.data.map((problem) => {
@@ -34,7 +35,8 @@ export const submitAnswer = (problem) => {
     };
     
     return(dispatch) => {
-        return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
+        // return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
+        return fetch(`http://tsumego-solver.herokuapp.com/problems/${problem.id.toString()}`, options)
         .then(resp => resp.json())
         .then(problem => {
             let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
@@ -87,7 +89,8 @@ export const submitProblem = problem => {
     };
 
     return(dispatch) => {
-        return fetch(`http://localhost:3000/problems`, options)
+        // return fetch(`http://localhost:3000/problems`, options)
+        return fetch(`http://tsumego-solver.herokuapp.com/problems`, options)
         .then(resp => resp.json())
         .then(problem => {
             let newProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}

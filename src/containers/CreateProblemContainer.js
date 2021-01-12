@@ -100,7 +100,7 @@ class CreateProblemContainer extends Component {
                 <Row>
                     <Col md="auto">
                         <label>
-                            <Switch offHandleColor="#000" onHandleColor="#FFF" checkedIcon={false} uncheckedIcon={false} onColor="#D3D3D3" offColor="#D3D3D3" onChange={this.handleChange} checked={this.state.checked} />
+                            <Switch offHandleColor="#2e2e2e" onHandleColor="#FFF" checkedIcon={false} uncheckedIcon={false} onColor="#D3D3D3" offColor="#D3D3D3" onChange={this.handleChange} checked={this.state.checked} />
                         </label>
                     </Col>
                     <Col md="auto"><CreateBoardView board={this.state} setStone={(i, j) => this.setStone(i, j)} /></Col>

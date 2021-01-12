@@ -7,7 +7,7 @@ body {
 }
 
 .home-page {
-	background: linear-gradient(-45deg, #B9FFB7, #39A2AE, #e6b95f, #005e09);
+	background: linear-gradient(-45deg, #e6b95f, #B9FFB7, #39A2AE, #005e09);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
