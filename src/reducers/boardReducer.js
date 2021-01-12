@@ -39,7 +39,6 @@ export default (state = [], action) => {
             updatedState[updatedProblemId].attempts = action.payload.attempts; 
             updatedState[updatedProblemId].solved = action.payload.solved; 
 
-            console.log(updatedState)
             return updatedState;
         default:
             return state
