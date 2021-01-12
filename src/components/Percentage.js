@@ -27,7 +27,7 @@ class Percentage extends Component {
                     </svg>
                 </div>
                 <div className="chart-description">
-                    <p>Users Solved Correctly</p>
+                    <p>of Users Solved Correctly</p>
                 </div>
             </div>
         );

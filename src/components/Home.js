@@ -30,7 +30,7 @@ class Home extends Component {
         return (
             <div className="home-page">
                 <div>
-                    <h2>Tsumego Solver</h2>
+                    <h2>TSUMEGO SOLVER</h2>
                     <Link to={`/problems/${this.filterOfficial()}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
                     <Link to={`/problems/create`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Create</Button>{' '}</Link>
                     <Link to={`/problems/${this.filterUserCreated()}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Browse</Button>{' '}</Link>

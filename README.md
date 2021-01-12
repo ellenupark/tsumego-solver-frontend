@@ -1,56 +1,29 @@
 # README
 
-[ ] Create Home Page (Route to '/')
-    ButtonsContainer (stateless):
-        Components (stateless):
-            [ ] PracticeButton.js
-[ ] Create Practice Page (Route to '/problems/:id')
-    PracticeContainer (stateless):
-        Components:
-            [ ] Board.js (state: {board})
-                [ ] Display Stone onHover 
-            [ ] PageControls.js (state: {board}):
-                Components:
-                    [ ] Prompt.js (props: {board.prompts})
-                    [ ] SubmitButton.js
-                    [ ] ResetButton.js (props: {board.board})
-[ ] Create Answer Page (Route to '/problems/:id/answer')
-    AnswerContainer (stateless):
-        Components:
-            [ ] Board.js (state: {board})
-                [ ] Display Answer Stone in RED
-            [ ] Answers.js (Route to '/problems/:id/answer')  (state: {board}):
-                Components:
-                    [ ] WinnerResult.js
-                    [ ] LoserResult.js
-                    [ ] Buttons.js
-                        [ ] TryAgainButton.js (Route to Practice Page)
-                        [ ] NextButton.js
-
-
 ## Backend
-<!-- [learn-hwatu-backend](https://github.com/ellenupark/learn-hwatu-backend) -->
+[tsumego-solver-backend](https://github.com/ellenupark/tsumego-solver-backend)
 
-## Project Demo
+<!-- ## Project Demo
 
-<!-- [learn-hwatu.herokuapp](https://learn-hwatu.herokuapp.com/) | [Summary Video](https://www.youtube.com/watch?v=deORxiINv8I) -->
+[tsumego-solver.herokuapp](https://learn-hwatu.herokuapp.com/) | [Summary Video](https://www.youtube.com/watch?v=deORxiINv8I) -->
 
 ## Description
 
 <!-- <img src="./images/learnhwatuimage.png" width="600"> -->
 
-<!-- Play against the computer and learn how to play the Korean card game, Hwatu.
-Learn Hwatu is a single page application built with a vanilla Javascript, HTML and CSS frontend.
-The backend was built with Ruby on Rails (RESTful API). -->
+Improve your Go knowledge by completing Life & Death practice problems. 
+Create your own or browse through user created problems.
+
+Tsumego Solver was built with React frontend and a Ruby on Rails backend.
 
 ## Install
 
 ### Clone Frontend and Backend Repositories
 
-<!-- ```shell
-git clone git@github.com:ellenupark/learn-hwatu-frontend.git
-git clone git@github.com:ellenupark/learn-hwatu-backend.git
-``` -->
+```shell
+git clone git@github.com:ellenupark/tsumego-solver-frontend.git
+git clone git@github.com:ellenupark/tsumego-solver-backend.git
+```
 
 ### Initialize the Database
 
@@ -71,10 +44,13 @@ rails s
 ```
 
 ### Open Application
-Navigate to the Frontend root directory. Open `index.html`.
+Navigate to the Frontend root directory.
 
-<!-- ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/ellenupark/learn-hwatu-frontend or https://github.com/ellenupark/learn-hwatu-backend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct. -->
+```yarn start
+```
+
+## Contributing
+Bug reports and pull requests are welcome on GitHub at https://github.com/ellenupark/tsumego-solver-frontend or https://github.com/ellenupark/tsumego-solver-backend. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 

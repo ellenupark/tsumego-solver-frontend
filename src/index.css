@@ -137,12 +137,13 @@ button {
 }
 
 .single-chart {
-  width: 5%;
+  width: 65px;
 }
 
-.chart-description p{
+.chart-description p {
   margin-bottom: 0;
   padding-left: 5px;
+  color: #666;
 }
 
 .circular-chart {
