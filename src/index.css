@@ -30,6 +30,17 @@ body {
   margin-bottom: 15px;
 }
 
+.container-fluid {
+  margin-top: 50px;
+}
+
+.row {
+  justify-content: center;
+  align-items: center;
+}
+
+
+
 .intersection {
   width: 40px;
   height: 40px;
@@ -92,6 +103,13 @@ body {
 
 .answer-details button {
   margin: 10px;
+}
+
+/* Create Page */
+
+.create-buttons button {
+  display: block;
+  margin: 10px auto 5px auto;
 }
 
 /* Home Page */

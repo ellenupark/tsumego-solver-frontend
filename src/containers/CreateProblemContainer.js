@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import CreateBoardView from '../components/CreateBoardView'
 import CreateDetailsContainer from './CreateDetailsContainer'
+import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
 
 
 class CreateProblemContainer extends Component {
@@ -82,11 +85,14 @@ class CreateProblemContainer extends Component {
     }
 
     render() {
+        
         return (
-            <div className="board-container">
-                <CreateBoardView board={this.state} setStone={(i, j) => this.setStone(i, j)} />
-                <CreateDetailsContainer board={this.state} toggleActive={() => this.toggleActive()} resetBoard={() => this.resetBoard()}/>
-            </div>
+            <Container fluid>
+                <Row>
+                    <Col md="auto"><CreateBoardView board={this.state} setStone={(i, j) => this.setStone(i, j)} /></Col>
+                    <Col md="auto"><CreateDetailsContainer board={this.state} toggleActive={() => this.toggleActive()} resetBoard={() => this.resetBoard()}/></Col>
+                </Row>
+            </Container>
         );
     }
 }
