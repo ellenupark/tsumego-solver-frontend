@@ -14,7 +14,7 @@
 Improve your Go knowledge by completing Life & Death practice problems. 
 Create your own or browse through user created problems.
 
-Tsumego Solver was built with React frontend and a Ruby on Rails backend.
+Tsumego Solver was built with a React frontend and a Ruby on Rails backend.
 
 ## Install
 
