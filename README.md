@@ -2,10 +2,10 @@
 
 ## Backend
 [tsumego-solver-backend](https://github.com/ellenupark/tsumego-solver-backend)
-<!-- 
+
 ## Project Demo
 
-[tsumego-solver.herokuapp](https://tsumego-solver.herokuapp.com/) | [Summary Video](https://www.youtube.com/watch?v=deORxiINv8I) -->
+[tsumego-solver.herokuapp](https://tsumego-solver.herokuapp.com/) | [Summary Video](https://youtu.be/ySfwkF2VpKw)
 
 ## Description
 
