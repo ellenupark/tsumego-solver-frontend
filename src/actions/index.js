@@ -1,6 +1,5 @@
 export const fetchProblems = () => {
     return(dispatch) => {
-        // return fetch('http://localhost:3000/problems')
         return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
         .then(resp => resp.json())
         .then(problems => {
@@ -15,14 +14,14 @@ export const fetchProblems = () => {
 export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
 
-    let counter = 0;
-    if (correct === true) {
-        counter += 1;
-    }
+    // let counter = 0;
+    // if (correct === true) {
+    //     counter += 1;
+    // }
 
     let data = {
         attempts: problem.attempts += 1,
-        solved: problem.solved += counter,
+        solved: correct === true ? problem.solved += 1 : problem.solved
     }
 
     let options = {
@@ -35,7 +34,6 @@ export const submitAnswer = (problem) => {
     };
     
     return(dispatch) => {
-        // return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
         return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id.toString()}`, options)
         .then(resp => resp.json())
         .then(problem => {
