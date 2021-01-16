@@ -14,11 +14,6 @@ export const fetchProblems = () => {
 export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
 
-    // let counter = 0;
-    // if (correct === true) {
-    //     counter += 1;
-    // }
-
     let data = {
         attempts: problem.attempts += 1,
         solved: correct === true ? problem.solved += 1 : problem.solved
