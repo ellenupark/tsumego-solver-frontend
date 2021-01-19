@@ -39,6 +39,8 @@ export default (state = [], action) => {
             updatedState[updatedProblemId].attempts = action.payload.attempts; 
             updatedState[updatedProblemId].solved = action.payload.solved; 
 
+            debugger
+            
             return updatedState;
         default:
             return state

@@ -1,6 +1,6 @@
 export const fetchProblems = () => {
     return(dispatch) => {
-        return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
+        return fetch('http://localhost:3000/problems')
         .then(resp => resp.json())
         .then(problems => {
             const allProblems = problems.data.map((problem) => {
@@ -27,11 +27,15 @@ export const submitAnswer = (problem) => {
         },
         body: JSON.stringify(data)
     };
-    
+    debugger
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id.toString()}`, options)
-        .then(resp => resp.json())
+        return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
+        .then(resp => {
+            debugger
+            return resp.json()
+        })
         .then(problem => {
+            debugger
             let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
             dispatch({ type: "SUBMIT_ANSWER", payload: updatedProblem })
         })
@@ -83,7 +87,7 @@ export const submitProblem = problem => {
 
     return(dispatch) => {
         // return fetch(`http://localhost:3000/problems`, options)
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
+        return fetch(`http://localhost:3000/problems`, options)
         .then(resp => resp.json())
         .then(problem => {
             let newProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
