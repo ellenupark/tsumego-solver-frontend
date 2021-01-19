@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import BoardIntersections from './BoardIntersections'
-import { playMove } from '../actions/index'
+import { playMove } from '../../actions/index'
 import { v4 as uuidv4 } from 'uuid';
 
 const GRID_SIZE = 40;

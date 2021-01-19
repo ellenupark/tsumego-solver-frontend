@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CreateDetailsSummary from '../components/CreateDetailsSummary'
-import CreateDetailsButtons from '../components/CreateDetailsButtons'
+import CreateDetailsSummary from '../../components/create/CreateDetailsSummary'
+import CreateDetailsButtons from '../../components/create/CreateDetailsButtons'
 
 class CreateDetailsContainer extends Component {
     render() {

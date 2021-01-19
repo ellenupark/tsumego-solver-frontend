@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AnswerDetailsSummary from '../components/AnswerDetailsSummary'
-import AnswerDetailsButtons from '../components/AnswerDetailsButtons'
-import Percentage from '../components/Percentage'
+import AnswerDetailsSummary from '../../components/answers/AnswerDetailsSummary'
+import AnswerDetailsButtons from '../../components/answers/AnswerDetailsButtons'
+import Percentage from '../../components/Percentage'
 
 
 

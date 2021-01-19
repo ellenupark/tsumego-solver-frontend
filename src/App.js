@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import ProblemContainer from './containers/ProblemContainer'
+import ProblemContainer from './containers/problems/ProblemContainer'
 import Home from './components/Home'
 import {
   BrowserRouter as Router,
@@ -9,8 +9,8 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
-import AnswerContainer from './containers/AnswerContainer'
-import CreateProblemContainer from './containers/CreateProblemContainer'
+import AnswerContainer from './containers/answers/AnswerContainer'
+import CreateProblemContainer from './containers/create/CreateProblemContainer'
 import Submitted from './components/Submitted'
 import NavBar from './components/NavBar'
 

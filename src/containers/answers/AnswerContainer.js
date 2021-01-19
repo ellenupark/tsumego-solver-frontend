@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BoardAnswerView from '../components/BoardAnswerView'
+import BoardAnswerView from '../../components/answers/BoardAnswerView'
 import AnswerDetailsContainer from './AnswerDetailsContainer'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'

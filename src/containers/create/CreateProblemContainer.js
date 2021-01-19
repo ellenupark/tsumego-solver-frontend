@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CreateBoardView from '../components/CreateBoardView'
+import CreateBoardView from '../../components/create/CreateBoardView'
 import CreateDetailsContainer from './CreateDetailsContainer'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'

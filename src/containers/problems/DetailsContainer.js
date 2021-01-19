@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DetailsSummary from '../components/DetailsSummary'
-import DetailsButtons from '../components/DetailsButtons'
+import DetailsSummary from '../../components/problems/DetailsSummary'
+import DetailsButtons from '../../components/problems/DetailsButtons'
 // import { connect } from 'react-redux'
 
 class DetailsContainer extends Component {

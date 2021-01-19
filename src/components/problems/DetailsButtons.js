@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { submitAnswer } from '../actions/index'
+import { submitAnswer } from '../../actions/index'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
