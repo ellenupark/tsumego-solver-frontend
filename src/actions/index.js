@@ -31,8 +31,7 @@ export const submitAnswer = (problem) => {
     return(dispatch) => {
         return fetch(`http://localhost:3000/problems/${problem.id.toString()}`, options)
         .then(resp => {
-            debugger
-            return resp.json()
+            resp.json()
         })
         .then(problem => {
             debugger

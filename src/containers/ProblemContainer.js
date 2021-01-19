@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import BoardView from '../../components/problems/BoardView'
+import BoardView from '../components/BoardView'
 import DetailsContainer from './DetailsContainer'
 import { connect } from 'react-redux'
-import { fetchProblems } from '../../actions/index'
+import { fetchProblems } from '../actions/index'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
