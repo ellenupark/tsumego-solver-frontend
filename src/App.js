@@ -9,13 +9,8 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
-<<<<<<< HEAD
 import AnswerContainer from './containers/AnswerContainer'
 import CreateProblemContainer from './containers/CreateProblemContainer'
-=======
-import AnswerContainer from './containers/answers/AnswerContainer'
-import CreateProblemContainer from './containers/create/CreateProblemContainer'
->>>>>>> parent of 1f3c0d0... updated URLs
 import Submitted from './components/Submitted'
 import NavBar from './components/NavBar'
 
