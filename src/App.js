@@ -22,13 +22,13 @@ class App extends Component {
 
   renderProblem = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
-    let foundProblem = this.props.problems.board.find(problem => problem.id === problemId)
+    let foundProblem = this.props.problems.find(problem => problem.id === problemId)
     return (foundProblem ? <ProblemContainer problem={foundProblem} /> : <div/>)
   }
 
   renderAnswer = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
-    let foundProblem = this.props.problems.board.find(problem => problem.id === problemId)
+    let foundProblem = this.props.problems.find(problem => problem.id === problemId)
     return (foundProblem ? <AnswerContainer problem={foundProblem} /> : <div/>)
   }
 
