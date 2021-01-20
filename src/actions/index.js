@@ -13,8 +13,9 @@ export const fetchProblems = () => {
 
 export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
+    const empty = checkForEmptyBoard(problem);
 
-    if (checkForEmptyBoard(problem)) {
+    if (empty) {
         return {
             type: "ADD_EMPTY_BOARD_ERROR",
             payload: problem
@@ -36,9 +37,10 @@ export const submitAnswer = (problem) => {
     };
     
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id.toString()}`, options)
+        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id}`, options)
         .then(resp => resp.json())
         .then(problem => {
+            debugger
             let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
             dispatch({ type: "SUBMIT_ANSWER", payload: updatedProblem })
         })

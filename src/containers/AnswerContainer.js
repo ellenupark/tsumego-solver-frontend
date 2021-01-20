@@ -4,9 +4,15 @@ import AnswerDetailsContainer from './AnswerDetailsContainer'
 import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom';
+
 
 class AnswerContainer extends Component {
     render() {
+        if (this.props.errors) {
+            return <Redirect to={`/problems/${this.props.problem.id}`} /> 
+        }
         return (
             <Container fluid className="board-container">
                 <Row>
@@ -18,4 +24,10 @@ class AnswerContainer extends Component {
     }
 }
 
-export default AnswerContainer;
+const mapStateToProps = state => {
+    return {
+        errors: state.problems.errors
+    }
+}
+
+export default connect(mapStateToProps)(AnswerContainer);
