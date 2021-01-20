@@ -27,18 +27,18 @@ export default (state = [], action) => {
                 }
             }
             return {
-                all: [...newState],
+                problems: [...newState],
                 errors: ''
             };
         case "SET_PROBLEM":
             return {
                 ...state,
-                all: [...action.payload],
+                problems: [...action.payload],
             }
         case "SUBMIT_PROBLEM":
             return {
                 ...state,
-                all: [...state.problems, action.payload],
+                problems: [...state.problems, action.payload],
             }
         case "SUBMIT_ANSWER":
             let updatedState = state.problems.map(problem => {return {...problem}})
@@ -49,7 +49,7 @@ export default (state = [], action) => {
 
             return {
                 ...state,
-                all: updatedState,
+                problems: updatedState,
             };
         case "ADD_EMPTY_BOARD_ERROR":
             return {

@@ -26,7 +26,7 @@ const DetailsButtons = (props) => {
 
 const mapStateToProps = state => {
     return {
-        problems: state.problems.all,
+        problems: state.problems.problems,
         errors: state.problems.errors
     }
 }
