@@ -2,7 +2,7 @@
 export default (state = [], action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
-            let newState = state.map(problem => {return {...problem}})
+            let newState = state.all.map(problem => {return {...problem}})
 
             const currentProblem = newState.find(problem => problem.id === action.payload.id);
             const currentProblemId = newState.findIndex(problem => problem === currentProblem);
@@ -27,21 +27,21 @@ export default (state = [], action) => {
                 }
             }
             return {
-                problems: [...newState],
+                all: [...newState],
                 errors: ''
             };
         case "SET_PROBLEM":
             return {
                 ...state,
-                problems: [...action.payload],
+                all: [...action.payload],
             }
         case "SUBMIT_PROBLEM":
             return {
                 ...state,
-                problems: [...state.problems, action.payload],
+                all: [...state.all, action.payload],
             }
         case "SUBMIT_ANSWER":
-            let updatedState = state.problems.map(problem => {return {...problem}})
+            let updatedState = state.all.map(problem => {return {...problem}})
             const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
             
             updatedState[updatedProblemId].attempts = action.payload.attempts; 
@@ -49,7 +49,7 @@ export default (state = [], action) => {
 
             return {
                 ...state,
-                problems: updatedState,
+                all: updatedState,
             };
         case "ADD_EMPTY_BOARD_ERROR":
             return {
