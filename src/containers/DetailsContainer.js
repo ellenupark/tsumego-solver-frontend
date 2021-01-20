@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DetailsSummary from '../components/DetailsSummary'
 import DetailsButtons from '../components/DetailsButtons'
-// import { connect } from 'react-redux'
 
 class DetailsContainer extends Component {
     render() {
@@ -13,11 +12,5 @@ class DetailsContainer extends Component {
         );
     }
 }
-
-// const mapStateToProps = state => {
-//     return {
-//         game: state
-//     }
-// }
 
 export default DetailsContainer;

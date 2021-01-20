@@ -13,6 +13,14 @@ export const fetchProblems = () => {
 
 export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
+    const empty = checkForEmptyBoard(problem);
+
+    if (empty) {
+        return {
+            type: "ADD_EMPTY_BOARD_ERROR",
+            payload: problem
+        }
+    }
 
     let data = {
         attempts: problem.attempts += 1,
@@ -93,6 +101,13 @@ export const submitProblem = problem => {
     }
 }
 
+export const removeErrors = () => {
+    return {
+        type: "REMOVE_ERRORS",
+        payload: "remove"
+    }
+}
+
 function convertStringToBoard(string, board_size) {
     let  result = [];
     let  count = 0;
@@ -128,6 +143,17 @@ function checkForCorrectAnswer(problem) {
     for (let i = 0; i < problem.answer.length; i++) {
         for (let j = 0; j < problem.answer.length; j++) {
             if (problem.answer[i][j] !== problem.currentBoard[i][j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function checkForEmptyBoard(problem) {
+    for (let i = 0; i < problem.board_size; i++) {
+        for (let j = 0; j < problem.board_size; j++) {
+            if (problem.currentBoard[i][j] !== problem.board[i][j]) {
                 return false;
             }
         }

@@ -26,19 +26,41 @@ export default (state = [], action) => {
                     newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 0; 
                 }
             }
-            return newState;
+            return {
+                all: [...newState],
+                errors: ''
+            };
         case "SET_PROBLEM":
-            return [...action.payload]
+            return {
+                ...state,
+                all: [...action.payload],
+            }
         case "SUBMIT_PROBLEM":
-            return [...state, action.payload]
+            return {
+                ...state,
+                all: [...state.problems, action.payload],
+            }
         case "SUBMIT_ANSWER":
-            let updatedState = state.map(problem => {return {...problem}})
+            let updatedState = state.problems.map(problem => {return {...problem}})
             const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
             
             updatedState[updatedProblemId].attempts = action.payload.attempts; 
             updatedState[updatedProblemId].solved = action.payload.solved; 
 
-            return updatedState;
+            return {
+                ...state,
+                all: updatedState,
+            };
+        case "ADD_EMPTY_BOARD_ERROR":
+            return {
+                ...state,
+                errors: "Must play stone before submitting"
+            }
+        case "REMOVE_ERRORS":
+            return {
+                ...state,
+                errors: ""
+            }
         default:
             return state
     }

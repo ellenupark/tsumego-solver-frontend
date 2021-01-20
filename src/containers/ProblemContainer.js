@@ -24,10 +24,4 @@ class ProblemContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        game: state
-    }
-}
-
-export default connect(mapStateToProps, { fetchProblems })(ProblemContainer);
+export default connect(null, { fetchProblems })(ProblemContainer);

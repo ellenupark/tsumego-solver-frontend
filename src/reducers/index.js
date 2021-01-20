@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import board from './boardReducer'
+import problems from './boardReducer'
 
 export default combineReducers({
-    board
+    problems
 })

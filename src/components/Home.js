@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-// import { fetchProblems } from '../actions/index'
+import { fetchProblems } from '../actions/index'
+import { removeErrors } from '../actions/index'
 import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
-    // componentDidMount() {
-    //     this.props.fetchProblems();
-    // }
+    componentDidMount() {
+        this.props.fetchProblems();
+        this.props.removeErrors()
+    }
 
     filterUserCreated = () => {
         const problems = this.props.problems.filter(problem => problem.user_made === true);
@@ -42,8 +44,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
     return {
-        problems: state.board
+        problems: state.problems.all
     }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, { fetchProblems, removeErrors })(Home);

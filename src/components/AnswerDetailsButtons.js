@@ -30,7 +30,7 @@ class AnswerDetailsButtons extends Component {
 
 const mapStateToProps = state => {
     return {
-        problems: state
+        problems: state.problems.all
     }
 }
 
