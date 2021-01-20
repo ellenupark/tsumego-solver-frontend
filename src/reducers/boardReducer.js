@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (state = [], action) => {
+export default (state = {}, action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
             let newState = state.all.map(problem => {return {...problem}})
