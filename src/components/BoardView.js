@@ -30,10 +30,4 @@ class BoardView extends Component {
     }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         game: state
-//     }
-// }
-
 export default connect(null, { playMove })(BoardView);
