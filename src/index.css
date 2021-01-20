@@ -230,3 +230,15 @@ button {
   font-size: 0.6em;
   text-anchor: middle;
 }
+
+/* Error Messages */
+
+.error-message {
+  border: 1px solid;
+  background-color: #FFBABA;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px 10px 5px;
+  color: #D8000C;
+  font-size: small;
+}
