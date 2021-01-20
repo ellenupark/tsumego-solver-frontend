@@ -1,6 +1,3 @@
-// import { createStore } from 'redux'
-// import Board from '../js/board'
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = [], action) => {
     switch (action.type) {
@@ -10,10 +7,11 @@ export default (state = [], action) => {
             const currentProblem = newState.find(problem => problem.id === action.payload.id);
             const currentProblemId = newState.findIndex(problem => problem === currentProblem);
 
+             // Check that intersection does not have a locked stone 
             if (currentProblem.board[action.payload.row][action.payload.col] === 0) {
-                // newState.board[action.payload.row][action.payload.col] = 0
-            // } else {
+                // Check if intersection is currently empty
                 if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
+                    // Remove last played stone
                     for (let i = 0; i < currentProblem.board_size; i++) {
                         for (let j = 0; j < currentProblem.board_size; j++) {
                             if (currentProblem.currentBoard[i][j] !== currentProblem.board[i][j]) {
@@ -21,12 +19,13 @@ export default (state = [], action) => {
                             }
                         }
                     }
+                    // Play stone
                     newState[currentProblemId].player === 'Black' ? newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 1 : newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 2;
                 } else {
+                    // Remove existing stone
                     newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 0; 
                 }
             }
-            // newState.current_color === 1 ? newState.current_color = 2 : newState.current_color = 1
             return newState;
         case "SET_PROBLEM":
             return [...action.payload]
