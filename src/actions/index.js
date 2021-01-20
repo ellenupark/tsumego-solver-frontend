@@ -13,9 +13,8 @@ export const fetchProblems = () => {
 
 export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
-    const empty = checkForEmptyBoard(problem);
 
-    if (empty) {
+    if (checkForEmptyBoard(problem)) {
         return {
             type: "ADD_EMPTY_BOARD_ERROR",
             payload: problem
@@ -90,7 +89,6 @@ export const submitProblem = problem => {
     };
 
     return(dispatch) => {
-        // return fetch(`http://localhost:3000/problems`, options)
         return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
         .then(resp => resp.json())
         .then(problem => {

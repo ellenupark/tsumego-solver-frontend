@@ -5,10 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 const GRID_SIZE = 40;
 
 class CreateBoardView extends Component {
-    // handleSubmit = (row, col) => {
-    //     this.props.playMove({row: row, col: col, id: this.props.game.id});
-    // }
-
     render() {
         const intersections = [];
 
