@@ -32,17 +32,6 @@ class App extends Component {
     return (foundProblem ? <AnswerContainer problem={foundProblem} /> : <div/>)
   }
 
-  checkForEmptyBoard = (problem) => {
-    for (let i = 0; i < problem.board_size; i++) {
-      for (let j = 0; j < problem.board_size; j++) {
-        if (problem.currentBoard[i][j] !== problem.board[i][j]) {
-          return false
-        }
-      }
-    }
-    return true
-  }
-
   render() {
     return (
       <Router>
