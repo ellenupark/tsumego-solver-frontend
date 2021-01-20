@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 
 class AnswerDetailsButtons extends Component {
-    selectNextProblem = (state) => {
+    selectNextProblem = (props) => {
         const currentProblemId = this.props.id;
         let nextProblemId = currentProblemId;
     
         while (nextProblemId === currentProblemId) {
-            if (state.board.find(problem => problem.id === this.props.id).user_made === false) {
-                nextProblemId = state.board.filter(board => board.user_made === false)[Math.floor(Math.random() * state.board.filter(board => board.user_made === false).length)].id
+            if (props.find(problem => problem.id === this.props.id).user_made === false) {
+                nextProblemId = props.filter(board => board.user_made === false)[Math.floor(Math.random() * props.filter(board => board.user_made === false).length)].id
             } else {
-                nextProblemId = state.board.filter(board => board.user_made === true)[Math.floor(Math.random() * state.board.filter(board => board.user_made === true).length)].id
+                nextProblemId = props.filter(board => board.user_made === true)[Math.floor(Math.random() * props.filter(board => board.user_made === true).length)].id
             }
         }
         return nextProblemId;
