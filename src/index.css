@@ -242,3 +242,20 @@ button {
   color: #D8000C;
   font-size: small;
 }
+
+/* Not Found Page */
+
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.not-found h2 {
+  font-size: 3rem;
+}
+
+.not-found p {
+  margin-top: 25px;
+}

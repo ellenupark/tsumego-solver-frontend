@@ -5,7 +5,8 @@ import ProblemContainer from './containers/ProblemContainer'
 import Home from './components/Home'
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
@@ -13,6 +14,7 @@ import AnswerContainer from './containers/AnswerContainer'
 import CreateProblemContainer from './containers/CreateProblemContainer'
 import Submitted from './components/Submitted'
 import NavBar from './components/NavBar'
+import NotFound from './components/NotFound'
 
 class App extends Component {
 
@@ -36,12 +38,15 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" component={Home} />
-          <Route path="/problems" component={NavBar} />
-          <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
-          <Route exact path = '/problems/create' component={CreateProblemContainer} />
-          <Route exact path = '/problems/submitted' component={Submitted} />
-          <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+          <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/submitted', '/problems/:id']} component={NavBar} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
+            <Route exact path = '/problems/create' component={CreateProblemContainer} />
+            <Route exact path = '/problems/submitted' component={Submitted} />
+            <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+            <Route exact path='*' component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );
