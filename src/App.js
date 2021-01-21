@@ -6,7 +6,8 @@ import Home from './components/Home'
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { fetchProblems } from './actions/index'
@@ -25,13 +26,13 @@ class App extends Component {
   renderProblem = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
-    return (foundProblem ? <ProblemContainer problem={foundProblem} /> : <div/>)
+    return (foundProblem ? <ProblemContainer problem={foundProblem} /> :  <Redirect to="/" />)
   }
 
   renderAnswer = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
-    return (foundProblem ? <AnswerContainer problem={foundProblem} /> : <div/>)
+    return (foundProblem ? <AnswerContainer problem={foundProblem} /> : <Redirect to="/" />)
   }
 
   render() {
