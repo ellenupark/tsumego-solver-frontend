@@ -27,8 +27,8 @@ export default (state = {allProblems: [], errors: ""}, action) => {
                 }
             }
             return {
+                errors: '',
                 allProblems: [...newState],
-                errors: ''
             };
         case "SET_PROBLEM":
             return {
@@ -37,7 +37,7 @@ export default (state = {allProblems: [], errors: ""}, action) => {
             }
         case "SUBMIT_PROBLEM":
             return {
-                ...state,
+                errors: '',
                 allProblems: [...state.allProblems, action.payload],
             }
         case "SUBMIT_ANSWER":

@@ -9,8 +9,22 @@ import { Redirect } from 'react-router-dom';
 
 
 class AnswerContainer extends Component {
+    checkForEmptyBoard(problem) {
+        for (let i = 0; i < problem.board_size; i++) {
+            for (let j = 0; j < problem.board_size; j++) {
+                if (problem.currentBoard[i][j] !== problem.board[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     render() {
         if (this.props.errors) {
+            return <Redirect to={`/problems/${this.props.problem.id}`} /> 
+        }
+        if (this.checkForEmptyBoard(this.props.problem)) {
             return <Redirect to={`/problems/${this.props.problem.id}`} /> 
         }
         return (
