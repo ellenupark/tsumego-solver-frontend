@@ -40,12 +40,12 @@ class App extends Component {
         <div className="App">
           <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/submitted', '/problems/:id']} component={NavBar} />
           <Switch>
+            <Route path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
+            <Route path = '/problems/create' component={CreateProblemContainer} />
+            <Route path = '/problems/submitted' component={Submitted} />
+            <Route path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
             <Route exact path="/" component={Home} />
-            <Route exact path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
-            <Route exact path = '/problems/create' component={CreateProblemContainer} />
-            <Route exact path = '/problems/submitted' component={Submitted} />
-            <Route exact path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
-            <Route exact path='*' component={NotFound} />
+            <Route path='*' component={NotFound} />
           </Switch>
         </div>
       </Router>
