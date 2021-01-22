@@ -51,7 +51,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/submitted', '/problems/:id']} component={NavBar} />
+          <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/create/:id', '/problems/submitted', '/problems/:id']} component={NavBar} />
           <Switch>
             <Route path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
             <Route exact path = '/problems/create' component={CreateProblemContainer} />
