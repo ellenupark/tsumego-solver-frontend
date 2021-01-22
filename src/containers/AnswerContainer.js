@@ -21,10 +21,7 @@ class AnswerContainer extends Component {
     }
 
     render() {
-        if (this.props.errors) {
-            return <Redirect to={`/problems/${this.props.problem.id}`} /> 
-        }
-        if (this.checkForEmptyBoard(this.props.problem)) {
+        if (this.props.errors || this.checkForEmptyBoard(this.props.problem)) {
             return <Redirect to={`/problems/${this.props.problem.id}`} /> 
         }
         return (
