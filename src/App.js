@@ -26,7 +26,13 @@ class App extends Component {
   renderProblem = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
-    return (foundProblem ? <ProblemContainer problem={foundProblem} /> :  <ProblemNotFound />)
+    if (this.props.problems.length < 1) {
+      return <div/>
+    } else if (this.props.problems.length > 0 && foundProblem) {
+      return <ProblemContainer problem={foundProblem} /> 
+    } else {
+      return <ProblemNotFound />
+    }
   }
 
   renderAnswer = (routerProps) => {
@@ -42,7 +48,7 @@ class App extends Component {
           <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/submitted', '/problems/:id']} component={NavBar} />
           <Switch>
             <Route path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
-            <Route path = '/problems/create' component={CreateProblemContainer} />
+            <Route exact path = '/problems/create' component={CreateProblemContainer} />
             <Route path = '/problems/submitted' component={Submitted} />
             <Route path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
             <Route exact path="/" component={Home} />
