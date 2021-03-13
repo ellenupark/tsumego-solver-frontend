@@ -10,14 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 class AnswerContainer extends Component {
     checkForEmptyBoard(problem) {
-        for (let i = 0; i < problem.board_size; i++) {
-            for (let j = 0; j < problem.board_size; j++) {
-                if (problem.currentBoard[i][j] !== problem.board[i][j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return (JSON.stringify(problem.currentBoard) === JSON.stringify(problem.board) ? true : false)
     }
 
     render() {

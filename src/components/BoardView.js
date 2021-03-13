@@ -14,7 +14,6 @@ class BoardView extends Component {
 
     render() {
         const intersections = [];
-
         const style = {
             width: this.props.game.board_size * GRID_SIZE + 4,
             height: this.props.game.board_size * GRID_SIZE + 4

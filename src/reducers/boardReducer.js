@@ -6,7 +6,6 @@ export default (state = {allProblems: [], errors: ""}, action) => {
 
             const currentProblem = newState.find(problem => problem.id === action.payload.id);
             const currentProblemId = newState.findIndex(problem => problem === currentProblem);
-
              // Check that intersection does not have a locked stone 
             if (currentProblem.board[action.payload.row][action.payload.col] === 0) {
                 // Check if intersection is currently empty

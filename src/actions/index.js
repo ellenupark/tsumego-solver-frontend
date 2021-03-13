@@ -1,10 +1,11 @@
 export const fetchProblems = () => {
     return(dispatch) => {
-        return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
+        // return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
+        return fetch('http://127.0.0.1:3000/problems')
         .then(resp => resp.json())
         .then(problems => {
             const allProblems = problems.data.map((problem) => {
-                return {...problem.attributes, board: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), currentBoard: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), answer: convertStringToBoard(problem.attributes.answer, problem.attributes.board_size)}
+                return {...problem.attributes, currentBoard: JSON.parse(JSON.stringify(problem.attributes.board)) }
             })
             dispatch({ type: "SET_PROBLEM", payload: allProblems })
         })
@@ -24,7 +25,9 @@ export const submitAnswer = (problem) => {
 
     let data = {
         attempts: problem.attempts += 1,
-        solved: correct === true ? problem.solved += 1 : problem.solved
+        solved: correct === true ? problem.solved += 1 : problem.solved,
+        board: problem.board,
+        answer: problem.answer
     }
 
     let options = {
@@ -37,10 +40,11 @@ export const submitAnswer = (problem) => {
     };
     
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id}`, options)
+        return fetch(`http://127.0.0.1:3000/problems/${problem.id}`, options)
+        // return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id}`, options)
         .then(resp => resp.json())
         .then(problem => {
-            let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            let updatedProblem = {...problem.data.attributes, currentBoard: JSON.parse(JSON.stringify(problem.data.attributes.board)) }
             dispatch({ type: "SUBMIT_ANSWER", payload: updatedProblem })
         })
         
@@ -57,26 +61,28 @@ export const playMove = move => {
 export const submitProblem = problem => {
     let submit = problem;
 
-    let answerArray = [[], [], [], [], [], [], [], [], []];
+    submit.answer = JSON.parse(JSON.stringify(problem.board)); 
 
-    for (let i = 0; i < problem.board_size; i++) {
-        for (let j = 0; j < problem.board_size; j++) {
-            answerArray[i].push(problem.board[i][j])
-        }
-    }
+    // let answerArray = [[], [], [], [], [], [], [], [], []];
 
-    let problemBoard = [...problem.board]
+    // for (let i = 0; i < problem.board_size; i++) {
+    //     for (let j = 0; j < problem.board_size; j++) {
+    //         answerArray[i].push(problem.board[i][j])
+    //     }
+    // }
+
+    // let problemBoard = [...problem.board]
 
     const row = parseInt(problem.move.split('-')[0]);
     const col = parseInt(problem.move.split('-')[1]);
 
-    problemBoard[row][col] = 0;
+    submit.board[row][col] = 0;
 
-    submit.answer = [...answerArray]
-    submit.board = [...problemBoard] 
+    // submit.answer = [...answerArray]
+    // submit.board = [...problemBoard] 
 
-    submit.board = convertBoardToString(submit.board, 9);
-    submit.answer = convertBoardToString(submit.answer, 9);
+    // submit.board = convertBoardToString(submit.board, 9);
+    // submit.answer = convertBoardToString(submit.answer, 9);
 
     delete submit.active;
 
@@ -90,10 +96,11 @@ export const submitProblem = problem => {
     };
 
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
+        return fetch(`http://127.0.0.1:3000/problems`, options)
+        // return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
         .then(resp => resp.json())
         .then(problem => {
-            let newProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            let newProblem = {...problem.data.attributes, currentBoard: JSON.parse(JSON.stringify(problem.data.attributes.board))}
             dispatch({ type: "SUBMIT_PROBLEM", payload: newProblem })
         })
         
@@ -107,55 +114,41 @@ export const removeErrors = () => {
     }
 }
 
-function convertStringToBoard(string, board_size) {
-    let  result = [];
-    let  count = 0;
-    for (let  i = 0; i < board_size; i++) {
-        result.push([])
-    }
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] !== '-') {
-            result[count].push(parseInt(string[i]))
-        } else {
-            count += 1;
-        }
-    }
-    return  result;
-}
+// function convertStringToBoard(string, board_size) {
+//     let  result = [];
+//     let  count = 0;
+//     for (let  i = 0; i < board_size; i++) {
+//         result.push([])
+//     }
+//     for (let i = 0; i < string.length; i++) {
+//         if (string[i] !== '-') {
+//             result[count].push(parseInt(string[i]))
+//         } else {
+//             count += 1;
+//         }
+//     }
+//     return  result;
+// }
 
-function convertBoardToString(array, board_size) {
-    let result = "";
-    for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < array[i].length; j++) {
-            if (j === board_size - 1 && i !== board_size - 1) {
-                result += (array[i][j].toString())
-                result += ('-')
-            } else {
-                result += (array[i][j].toString())
-            }
-        }
-    }
-    return result;
-}
+// function convertBoardToString(array, board_size) {
+//     let result = "";
+//     for (let i = 0; i < array.length; i++) {
+//         for (let j = 0; j < array[i].length; j++) {
+//             if (j === board_size - 1 && i !== board_size - 1) {
+//                 result += (array[i][j].toString())
+//                 result += ('-')
+//             } else {
+//                 result += (array[i][j].toString())
+//             }
+//         }
+//     }
+//     return result;
+// }
 
 function checkForCorrectAnswer(problem) {
-    for (let i = 0; i < problem.answer.length; i++) {
-        for (let j = 0; j < problem.answer.length; j++) {
-            if (problem.answer[i][j] !== problem.currentBoard[i][j]) {
-                return false;
-            }
-        }
-    }
-    return true;
+    return (JSON.stringify(problem.answer) === JSON.stringify(problem.currentBoard) ? true : false);
 }
 
 function checkForEmptyBoard(problem) {
-    for (let i = 0; i < problem.board_size; i++) {
-        for (let j = 0; j < problem.board_size; j++) {
-            if (problem.currentBoard[i][j] !== problem.board[i][j]) {
-                return false;
-            }
-        }
-    }
-    return true;
+    return (JSON.stringify(problem.currentBoard) === JSON.stringify(problem.board) ? true : false);
 }
