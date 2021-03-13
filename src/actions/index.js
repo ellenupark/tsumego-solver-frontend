@@ -1,10 +1,11 @@
 export const fetchProblems = () => {
     return(dispatch) => {
-        return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
+        // return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
+        return fetch('http://127.0.0.1:3000/problems')
         .then(resp => resp.json())
         .then(problems => {
             const allProblems = problems.data.map((problem) => {
-                return {...problem.attributes, board: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), currentBoard: convertStringToBoard(problem.attributes.board, problem.attributes.board_size), answer: convertStringToBoard(problem.attributes.answer, problem.attributes.board_size)}
+                return {...problem.attributes, currentBoard: JSON.parse(JSON.stringify(problem.attributes.board)) }
             })
             dispatch({ type: "SET_PROBLEM", payload: allProblems })
         })
@@ -37,10 +38,11 @@ export const submitAnswer = (problem) => {
     };
     
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id}`, options)
+        return fetch(`http://127.0.0.1:3000/problems/${problem.id}`, options)
+        // return fetch(`https://tsumego-solver-backend.herokuapp.com/problems/${problem.id}`, options)
         .then(resp => resp.json())
         .then(problem => {
-            let updatedProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            let updatedProblem = {...problem.data.attributes, currentBoard: JSON.parse(JSON.stringify(problem.data.attributes.board)) }
             dispatch({ type: "SUBMIT_ANSWER", payload: updatedProblem })
         })
         
@@ -90,10 +92,11 @@ export const submitProblem = problem => {
     };
 
     return(dispatch) => {
-        return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
+        return fetch(`http://127.0.0.1:3000/problems`, options)
+        // return fetch(`https://tsumego-solver-backend.herokuapp.com/problems`, options)
         .then(resp => resp.json())
         .then(problem => {
-            let newProblem = {...problem.data.attributes, board: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), currentBoard: convertStringToBoard(problem.data.attributes.board, problem.data.attributes.board_size), answer: convertStringToBoard(problem.data.attributes.answer, problem.data.attributes.board_size)}
+            let newProblem = {...problem.data.attributes, currentBoard: JSON.parse(JSON.stringify(problem.data.attributes.board))}
             dispatch({ type: "SUBMIT_PROBLEM", payload: newProblem })
         })
         
