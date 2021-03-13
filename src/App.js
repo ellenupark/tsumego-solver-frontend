@@ -38,6 +38,7 @@ class App extends Component {
   renderAnswer = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
+
     if (this.props.problems.length < 1) {
       return <div/>
     } else if (this.props.problems.length > 0 && foundProblem) {
