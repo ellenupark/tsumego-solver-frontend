@@ -146,35 +146,9 @@ export const removeErrors = () => {
 // }
 
 function checkForCorrectAnswer(problem) {
-    if (JSON.stringify(problem.answer) === JSON.stringify(problem.currentBoard)) {
-        return true
-    } else {
-        return false;
-    }
-
-    // for (let i = 0; i < problem.answer.length; i++) {
-    //     for (let j = 0; j < problem.answer.length; j++) {
-    //         if (problem.answer[i][j] !== problem.currentBoard[i][j]) {
-    //             return false;
-    //         }
-    //     }
-    // }
-    // return true;
+    return (JSON.stringify(problem.answer) === JSON.stringify(problem.currentBoard) ? true : false);
 }
 
 function checkForEmptyBoard(problem) {
-    if (JSON.stringify(problem.currentBoard) === JSON.stringify(problem.board)) {
-        return true
-    } else {
-        return false;
-    }
-
-    // for (let i = 0; i < problem.board_size; i++) {
-    //     for (let j = 0; j < problem.board_size; j++) {
-    //         if (problem.currentBoard[i][j] !== problem.board[i][j]) {
-    //             return false;
-    //         }
-    //     }
-    // }
-    // return true;
+    return (JSON.stringify(problem.currentBoard) === JSON.stringify(problem.board) ? true : false);
 }
