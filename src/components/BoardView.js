@@ -4,8 +4,6 @@ import BoardIntersections from './BoardIntersections'
 import { playMove } from '../actions/index'
 import { v4 as uuidv4 } from 'uuid';
 
-const GRID_SIZE = 40;
-
 class BoardView extends Component {
 
     handleSubmit = (row, col) => {
@@ -13,10 +11,13 @@ class BoardView extends Component {
     }
 
     render() {
+        const grid_size = 40;
+
         const intersections = [];
+
         const style = {
-            width: this.props.game.board_size * GRID_SIZE + 4,
-            height: this.props.game.board_size * GRID_SIZE + 4
+            width: this.props.game.board_size * grid_size + 4,
+            height: this.props.game.board_size * grid_size + 4
         };
 
         for (let i = 0; i < this.props.game.board_size; i++) {
@@ -25,7 +26,6 @@ class BoardView extends Component {
             }
         }
         return <div style={style} id="board">{intersections}</div>
-        
     }
 }
 
