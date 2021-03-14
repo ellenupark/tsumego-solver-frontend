@@ -3,9 +3,7 @@ export const fetchProblems = () => {
         return fetch('https://tsumego-solver-backend.herokuapp.com/problems')
         .then(resp => resp.json())
         .then(problems => {
-            const allProblems = problems.data.map((problem) => {
-                return {...problem.attributes, currentBoard: JSON.parse(JSON.stringify(problem.attributes.board)) }
-            })
+            const allProblems = problems.data.map(problem => ({...problem.attributes, currentBoard: JSON.parse(JSON.stringify(problem.attributes.board))}));
             dispatch({ type: "SET_PROBLEM", payload: allProblems })
         })
     }
@@ -15,21 +13,16 @@ export const submitAnswer = (problem) => {
     const correct = checkForCorrectAnswer(problem)
     const empty = checkForEmptyBoard(problem);
 
-    if (empty) {
-        return {
-            type: "ADD_EMPTY_BOARD_ERROR",
-            payload: problem
-        }
-    }
+    if (empty) return {type: "ADD_EMPTY_BOARD_ERROR", payload: problem}
 
-    let data = {
+    const data = {
         attempts: problem.attempts += 1,
         solved: correct === true ? problem.solved += 1 : problem.solved,
         board: problem.board,
         answer: problem.answer
     }
 
-    let options = {
+    const options = {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -57,16 +50,17 @@ export const playMove = move => {
 }
 
 export const submitProblem = problem => {
-    let submit = problem;
+    // Set answer
+    problem.answer = JSON.parse(JSON.stringify(problem.board)); 
 
-    submit.answer = JSON.parse(JSON.stringify(problem.board)); 
-
+    // Prepare initial board state
     const row = parseInt(problem.move.split('-')[0]);
     const col = parseInt(problem.move.split('-')[1]);
 
-    submit.board[row][col] = 0;
+    problem.board[row][col] = 0;
 
-    delete submit.active;
+    // Delete active attribute before sending to database
+    delete problem.active;
 
     let options = {
         method: 'POST',
@@ -74,7 +68,7 @@ export const submitProblem = problem => {
             'Content-Type': 'application/json',
             "Accept": "application/json"
         },
-        body: JSON.stringify(submit)
+        body: JSON.stringify(problem)
     };
 
     return(dispatch) => {

@@ -8,9 +8,7 @@ import { Link } from 'react-router-dom';
 class CreateDetailsButtons extends Component {
 
     handleSubmit = (e) => {
-        console.log('a')
         this.props.submitProblem(this.props.problem)
-        console.log('g')
     }
     render() {
         if (this.props.problem.move === "") {
