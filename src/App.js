@@ -16,18 +16,19 @@ import Submitted from './components/Submitted'
 import NavBar from './components/NavBar'
 import NotFound from './components/NotFound'
 import ProblemNotFound from './components/ProblemNotFound'
+import LoadingSpinner from './components/LoadingSpinner';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchProblems();
+    // this.props.fetchProblems();
   }
 
   renderProblem = (routerProps) => {
     let problemId = parseInt(routerProps.match.params.id)
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
     if (this.props.problems.length < 1) {
-      return <div/>
+      return <LoadingSpinner />
     } else if (this.props.problems.length > 0 && foundProblem) {
       return <ProblemContainer problem={foundProblem} /> 
     } else {
@@ -40,7 +41,7 @@ class App extends Component {
     let foundProblem = this.props.problems.find(problem => problem.id === problemId)
 
     if (this.props.problems.length < 1) {
-      return <div/>
+      return <LoadingSpinner />
     } else if (this.props.problems.length > 0 && foundProblem) {
       return <AnswerContainer problem={foundProblem} />
     } else {

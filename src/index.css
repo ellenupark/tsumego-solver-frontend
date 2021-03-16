@@ -280,3 +280,23 @@ button {
 .problem-not-found p {
   margin-top: 25px;
 }
+
+/* Loading Spinner */
+
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  /* background-image: url('https://i.ibb.co/0MxnhGY/vector-creator-3.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; */
+}
+
+
+.spinner-border {
+  width: 4rem !important;
+  height: 4rem !important;
+}

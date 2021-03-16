@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 
 class ProblemContainer extends Component {
     componentDidMount() {
-        this.props.fetchProblems();
+        // this.props.fetchProblems();
     }
 
     render() {
