@@ -21,7 +21,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 class App extends Component {
 
   componentDidMount() {
-    // this.props.fetchProblems();
+    this.props.fetchProblems();
   }
 
   renderProblem = (routerProps) => {

@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button'
 
 class Home extends Component {
     componentDidMount() {
-        // this.props.fetchProblems();
+        this.props.fetchProblems();
         this.props.removeErrors()
     }
 
