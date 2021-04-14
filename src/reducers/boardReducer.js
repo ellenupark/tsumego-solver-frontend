@@ -2,29 +2,24 @@
 export default (state = {allProblems: [], errors: "", loading: true}, action) => {
     switch (action.type) {
         case 'PLAY_MOVE':
-            let newState = state.allProblems.map(problem => {return {...problem}})
-
+            const newState = JSON.parse(JSON.stringify(state.allProblems));
             const currentProblem = newState.find(problem => problem.id === action.payload.id);
-            const currentProblemId = newState.findIndex(problem => problem === currentProblem);
-             // Check that intersection does not have a locked stone 
-            if (currentProblem.board[action.payload.row][action.payload.col] === 0) {
-                // Check if intersection is currently empty
-                if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
-                    // Remove last played stone
-                    for (let i = 0; i < currentProblem.board_size; i++) {
-                        for (let j = 0; j < currentProblem.board_size; j++) {
-                            if (currentProblem.currentBoard[i][j] !== currentProblem.board[i][j]) {
-                                newState[currentProblemId].currentBoard[i][j] = 0;
-                            }
-                        }
-                    }
-                    // Play stone
-                    newState[currentProblemId].player === 'Black' ? newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 1 : newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 2;
-                } else {
-                    // Remove existing stone
-                    newState[currentProblemId].currentBoard[action.payload.row][action.payload.col] = 0; 
-                }
+
+            // Check if space is empty
+            if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
+
+                // Remove previously placed stones
+                currentProblem.currentBoard = JSON.parse(JSON.stringify(currentProblem.board));
+                
+                // Play stone
+                currentProblem.player === 'Black' ? currentProblem.currentBoard[action.payload.row][action.payload.col] = 1 : currentProblem.currentBoard[action.payload.row][action.payload.col] = 2;
+            
+            // If user clicked on an existing stone, check if it is a permanent stone or a user placed stone
+            } else if (currentProblem.board[action.payload.row][action.payload.col] === 0) {
+                // If user placed stone, remove it
+                currentProblem.currentBoard[action.payload.row][action.payload.col] = 0; 
             }
+
             return {
                 errors: '',
                 allProblems: [...newState],
