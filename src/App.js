@@ -24,26 +24,14 @@ class App extends Component {
     this.props.fetchProblems();
   }
 
-  renderProblem = (routerProps) => {
-    let problemId = parseInt(routerProps.match.params.id)
-    let foundProblem = this.props.problems.find(problem => problem.id === problemId)
-    if (this.props.problems.length < 1) {
-      return <LoadingSpinner />
-    } else if (this.props.problems.length > 0 && foundProblem) {
-      return <ProblemContainer problem={foundProblem} /> 
-    } else {
-      return <ProblemNotFound />
-    }
-  }
-
-  renderAnswer = (routerProps) => {
-    let problemId = parseInt(routerProps.match.params.id)
-    let foundProblem = this.props.problems.find(problem => problem.id === problemId)
+  renderBoard = (routerProps, Component) => {
+    const problemId = parseInt(routerProps.match.params.id)
+    const foundProblem = this.props.problems.find(problem => problem.id === problemId)
 
     if (this.props.problems.length < 1) {
       return <LoadingSpinner />
     } else if (this.props.problems.length > 0 && foundProblem) {
-      return <AnswerContainer problem={foundProblem} />
+      return <Component problem={foundProblem} /> 
     } else {
       return <ProblemNotFound />
     }
@@ -55,10 +43,10 @@ class App extends Component {
         <div className="App">
           <Route exact path={["/problems/:id/answer", '/problems/create', '/problems/create/:id', '/problems/submitted', '/problems/:id']} component={NavBar} />
           <Switch>
-            <Route path = '/problems/:id/answer' render = {routerProps => this.renderAnswer(routerProps)} />
+            <Route path = '/problems/:id/answer' render = {routerProps => this.renderBoard(routerProps, AnswerContainer)} />
             <Route exact path = '/problems/create' component={CreateProblemContainer} />
             <Route path = '/problems/submitted' component={Submitted} />
-            <Route path = '/problems/:id' render = {routerProps => this.renderProblem(routerProps)} />
+            <Route path = '/problems/:id' render = {routerProps => this.renderBoard(routerProps, ProblemContainer)} />
             <Route exact path="/" component={Home} />
             <Route path='*' component={NotFound} />
           </Switch>
