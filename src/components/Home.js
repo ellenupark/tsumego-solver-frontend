@@ -11,17 +11,8 @@ class Home extends Component {
         this.props.removeErrors()
     }
 
-    filterUserCreated = () => {
-        const problems = this.props.problems.filter(problem => problem.user_made === true);
-        if (problems.length < 1) {
-            return 1;
-        } else {
-            return problems[Math.floor(Math.random() * problems.length)].id;
-        }
-    }
-
-    filterOfficial = () => {
-        const problems = this.props.problems.filter(problem => problem.user_made === false);
+    filterProblems = isUserMade => {
+        const problems = this.props.problems.filter(problem => problem.user_made === isUserMade);
         if (problems.length < 1) {
             return 1;
         }
@@ -33,9 +24,9 @@ class Home extends Component {
             <div className="home-page">
                 <div>
                     <h2>TSUMEGO SOLVER</h2>
-                    <Link to={`/problems/${this.filterOfficial()}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
+                    <Link to={`/problems/${this.filterProblems(false)}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Practice</Button>{' '}</Link>
                     <Link to={`/problems/create`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Create</Button>{' '}</Link>
-                    <Link to={`/problems/${this.filterUserCreated()}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Browse</Button>{' '}</Link>
+                    <Link to={`/problems/${this.filterProblems(true)}`} style={{textDecoration: 'none'}}><Button variant="success" size="lg">Browse</Button>{' '}</Link>
                 </div>
             </div>
         );
