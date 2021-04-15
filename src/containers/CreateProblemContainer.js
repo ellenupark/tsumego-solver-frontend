@@ -27,7 +27,6 @@ class CreateProblemContainer extends Component {
     }
 
     setStone(row, col) {
-        
         if (this.state.active && this.state.board[row][col] === 0) {
             this.setState({
                 move: `${row.toString()}-${col.toString()}`
@@ -44,7 +43,6 @@ class CreateProblemContainer extends Component {
 
         this.setState({
             board: this.updateBoard(row, col, this.state.current_color),
-            // current_color: this.state.current_color === 1 ? 2 : 1,
         })
         return true;
     };
