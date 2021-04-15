@@ -23,7 +23,7 @@ export default (state = {allProblems: [], errors: "", loading: true}, action) =>
             return {
                 ...state,
                 errors: '',
-                allProblems: [...newState]
+                allProblems: newState
             };
         case "SET_PROBLEM":
             return {
@@ -38,11 +38,11 @@ export default (state = {allProblems: [], errors: "", loading: true}, action) =>
                 allProblems: [...state.allProblems, action.payload],
             }
         case "SUBMIT_ANSWER":
-            let updatedState = state.allProblems.map(problem => {return {...problem}})
-            const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
+            const updatedState = JSON.parse(JSON.stringify(state.allProblems));
+            const problemIdx = updatedState.findIndex(problem => problem.id === action.payload.id);
             
-            updatedState[updatedProblemId].attempts = action.payload.attempts; 
-            updatedState[updatedProblemId].solved = action.payload.solved; 
+            updatedState[problemIdx].attempts = action.payload.attempts; 
+            updatedState[problemIdx].solved = action.payload.solved; 
 
             return {
                 ...state,
