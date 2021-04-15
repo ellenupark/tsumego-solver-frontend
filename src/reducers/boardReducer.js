@@ -8,7 +8,7 @@ export default (state = {allProblems: [], errors: "", loading: true}, action) =>
             // Check if space is empty
             if (currentProblem.currentBoard[action.payload.row][action.payload.col] === 0) {
 
-                // Remove previously placed stones
+                // Remove previously placed stones (reset board)
                 currentProblem.currentBoard = JSON.parse(JSON.stringify(currentProblem.board));
                 
                 // Play stone
@@ -21,8 +21,9 @@ export default (state = {allProblems: [], errors: "", loading: true}, action) =>
             }
 
             return {
+                ...state,
                 errors: '',
-                allProblems: [...newState],
+                allProblems: newState
             };
         case "SET_PROBLEM":
             return {
@@ -32,15 +33,16 @@ export default (state = {allProblems: [], errors: "", loading: true}, action) =>
             }
         case "SUBMIT_PROBLEM":
             return {
+                ...state,
                 errors: '',
                 allProblems: [...state.allProblems, action.payload],
             }
         case "SUBMIT_ANSWER":
-            let updatedState = state.allProblems.map(problem => {return {...problem}})
-            const updatedProblemId = updatedState.findIndex(problem => problem.id === action.payload.id);
+            const updatedState = JSON.parse(JSON.stringify(state.allProblems));
+            const problemIdx = updatedState.findIndex(problem => problem.id === action.payload.id);
             
-            updatedState[updatedProblemId].attempts = action.payload.attempts; 
-            updatedState[updatedProblemId].solved = action.payload.solved; 
+            updatedState[problemIdx].attempts = action.payload.attempts; 
+            updatedState[problemIdx].solved = action.payload.solved; 
 
             return {
                 ...state,
