@@ -26,23 +26,24 @@ class CreateProblemContainer extends Component {
         }
     }
 
-    setStone(i, j) {
-        if (this.state.active && this.state.board[i][j] === 0) {
+    setStone(row, col) {
+        
+        if (this.state.active && this.state.board[row][col] === 0) {
             this.setState({
-                move: `${i.toString()}-${j.toString()}`
+                move: `${row.toString()}-${col.toString()}`
             })
             this.toggleActive();
         }
 
-        if (this.state.board[i][j] !== 0) {
+        if (this.state.board[row][col] !== 0) {
             this.setState({
-                board: this.updateBoard(i, j, 0)
+                board: this.updateBoard(row, col, 0)
             })
             return true;
         }
 
         this.setState({
-            board: this.updateBoard(i, j, this.state.current_color),
+            board: this.updateBoard(row, col, this.state.current_color),
             // current_color: this.state.current_color === 1 ? 2 : 1,
         })
         return true;
